@@ -1,0 +1,22 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+index:
+  path: /
+  controller: App\Controller\IndexController::index
+admin:
+  path: /admin
+  controller: App\Controller\AdminController::index
+
+cour:
+  path: /cour
+  controller: App\Controller\CourController::index
+offre:
+  path: /offre
+  controller: App\Controller\OffreController::index
+contact:
+  path: /contact
+  controller: App\Controller\ContactController::index
+about:
+  path: /about
+  controller: App\Controller\AboutController::index

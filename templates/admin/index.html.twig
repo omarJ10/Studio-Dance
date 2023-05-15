@@ -1,0 +1,56 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block body %}
+    <h1>Admin</h1>
+  <!-- Orders -->
+                <div class="orders">
+                    <div class="row">
+                        <div class="col-xl-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="box-title">Admin </h4>
+                                </div>
+                                <div class="card-body--">
+                                    <div class="table-stats order-table ov-h">
+                                        <table class="table ">
+                                            <thead>
+                                                <tr>
+                                                   <th>ID</th>
+                                            <th>Email</th>
+                                         
+                                            <th>Password</th>
+                                            <th>actions</th>
+                                                </tr>
+                                            </thead>
+                                             <tbody>
+                                               
+                                        {% for admin in admins %}
+            <tr>
+                <td>{{ admin.id }}</td>
+                <td>{{ admin.email }}</td>
+                <td>{{ admin.password }}</td>
+                <td>
+                    <a class="badge badge-complete" href="{{ path('app_admin_show', {'id': admin.id}) }}">show</a>
+                    <a class="badge badge-complete" href="{{ path('app_admin_edit', {'id': admin.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table><a class="badge badge-complete" href="{{ path('app_coach_new') }}">Ajouter Admin</a>
+                                    </div> <!-- /.table-stats -->
+                                </div>
+                            </div>
+                                </div>
+
+                                
+                        </div> <!-- /.col-md-4 -->
+                    </div>
+                </div>
+                <!-- /.orders -->
+{% endblock %}
