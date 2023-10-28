@@ -208,6 +208,7 @@ button, input, select, textarea {
 figure {
   margin: 0;
 }
+
 img {
   display: inline-block;
   border: 0;
@@ -1300,7 +1301,35 @@ This is main CSS file that contains custom style rules used in this template
   }
 }
 
+/*-------------------------------------------------------*/
+.dropdown button{
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+.dropdown a{
+  display: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  
+}
+.dropdown .dropdown-content a{
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 
+}
+.dropdown:hover .dropdown-content{
+  display: block;
+}
+
+/*--------------------------------------------------------*/
 /*====================================================================*/
 /* 6. BLOG STYLES */
 /*====================================================================*/
