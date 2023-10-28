@@ -12,6 +12,14 @@
         <meta name="author" content="">
         <meta name="keywords" content="">
         <meta name="description" content="">
+        <!-- FOR DEATIL PAGE  -->
+          
+          <link rel="stylesheet" href="css/icomoon-social.css">
+          <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
+  
+          <link rel="stylesheet" href="css/leaflet.css" />
+          <!-- FOR DEATIL PAGE  -->
+        
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
@@ -35,6 +43,7 @@
             <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
             <script type="text/javascript" src="{{asset ('js/plugins.js') }}"></script>
             <script type="text/javascript" src="{{asset ('js/script.js') }} "></script>
+            <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
             
  
    
@@ -65,7 +74,7 @@
                     </li>
 
                     <li class="menu-item text-uppercase">
-                      <a href="offre" class="item-anchor" data-effect="Blogs">Deals</a>
+                      <a href="offre" class="item-anchor" data-effect="Blogs">Schedule</a>
                     </li>
 
                     <li class="menu-item text-uppercase">
@@ -85,19 +94,21 @@
                           <input class="search-field search-input" placeholder="Search" type="search">
                         </form>
                       </div>
-                      <div>
-                        <a href="#"  data-selector=".primary-nav" class="dropdown">
+                      <div class="dropdown">
+                        <a href="#"  data-selector=".primary-nav" class="dropdown-toggle" data-toggle="dropdown">
                           <i class="fa-solid fa-heart"></i>
-                          <div class="dropdown-content">
-                            <a href="#">Pizza</a>
-                            <a href="#">Burger</a>
-                            <a href="#">Pasta</a>
-                          </di>
                         </a>
-                      </div>
-                      
                         
-                      
+                        <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                        
+                      </div>
+
                     </li>
 
                   </ul>
