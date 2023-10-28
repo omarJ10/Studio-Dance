@@ -6,8 +6,27 @@
  
 
 {% block body %}
-  
 
+<style>/* classes */
+.class-item {
+  position: relative;
+  background: #111;
+}
+.class-item img {
+  transition: opacity 0.3s ease-out;
+}
+.class-item:hover img {
+  opacity: 0.2;
+}
+.class-item figcaption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.iconRed:hover{
+  background_color:red ;
+}
+</style>
     <div class="preloader-wrapper">
       <div class="preloader">
       </div>
@@ -36,7 +55,7 @@
             <div class="swiper-slide">
               <div class="product-item">
                 <div class="image-holder align-center">
-                  <img src="images/pic3.jpg" alt="shirt">
+                  <img src="images/pic1.jpg" alt="shirt">
                 </div>
                 <div class="products-title text-center">
                   <a href="single-product.html">Hiphop Training</a>
@@ -47,7 +66,7 @@
             <div class="swiper-slide">
               <div class="product-item">
                 <div class="image-holder align-center">
-                  <img src="images/item2.jpg" alt="shoes">
+                  <img src="images/flamenco-2.jpg" alt="shoes">
                 </div>
                 <div class="products-title text-center">
                   <a href="single-product.html">Ballet Dance</a>
@@ -191,74 +210,92 @@
         </div>
       </div>
     </section>
-    <section id="blog" class="latest-blogs padding-large">
-      <div class="container">
-        <div class="section-header text-center">
-          <h2 class="section-title">
-            <span class="text-primary">Read Our</span> Latest Blog Posts
+    
+    <section id="videos">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="section-header">
+          <h2 class="section-title text-center">
+            <span class="text-primary">Join</span> Our Classes
           </h2>
         </div>
         <div class="row">
-          <div class="col-md-4">
-            <div class="post-item" data-aos="fade" data-aos-delay="0">
-              <figure class="zoom-effect">
-                <img src="images/post-item1.jpg" alt="postitem" class="blog-image">
+          <div class="col-md-6">
+            <div class="class-item" data-aos="fade" data-aos-delay="0">
+              <figure>
+                <img src="images/pic2.jpg" alt="video">
+                <figcaption class="p-5 text-white">
+                  <h2 class="text-white m-0">Salsa</h2>
+                  <p class="m-0">By Ameni BEN ABDALLAH </p>
+                  <a href="connexion" class="btn btn-outline-light rounded-pill">JOIN Class</a>
+                </figcaption>
               </figure>
-              <div class="post-content">
-                <div class="meta-tags">
-                  <span class="meta-date">Posted on Jan 30, 2020</span>
-                  <span class="meta-author">By <a href="#">Admin</a></span>
-                </div>
-                <h3 class="post-title">
-                  <a href="single-post.html">Dancing Acts Like Meditation</a>
-                </h3>
-                <p>Dancing, akin to meditation, channels tranquility through rhythmic motion, aligning mind and body in harmonious sync. <br>It transcends mere steps, offering a serene escape into the present moment, where worries dissipate and inner peace flourishes. That's why Dancing acts like Meditation.<br> <a href="#" class="link">Read More</a>
-                </p>
-              </div>
+              <section id="slider">
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="post-item" data-aos="fade" data-aos-delay="100">
-              <figure class="zoom-effect">
-                <img src="images/post-item2.jpg" alt="postitem" class="blog-image">
+          <div class="col-md-6">
+            <div class="class-item" data-aos="fade" data-aos-delay="100">
+              <figure>
+                <img src="images/video-item1.jpg" alt="video">
+                <figcaption class="p-5 text-white">
+                  <h2 class="text-white m-0">Contemporary</h2>
+                  <p class="m-0">BY Mohamed NASRI</p>
+                  <a href="connexion" class="btn btn-outline-light rounded-pill">JOIN Class</a>
+                </figcaption>
               </figure>
-              <div class="post-content">
-                <div class="meta-tags">
-                  <span class="meta-date">Posted on Feb 10, 2020</span>
-                  <span class="meta-author">By <a href="#">Admin</a></span>
-                </div>
-                <h3 class="post-title">
-                  <a href="single-post.html">First Step Of Dance Is Full Of Joys</a>
-                </h3>
-                <p>Taking the first step into the world of dance is a waltz into pure delight, a symphony of joyous anticipation. The studio's embrace welcomes every tentative move, transforming uncertainty into graceful motion. It's the inception of a beautiful journey and sway unveils the magic of dance. <a href="#" class="link">Read More</a>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="post-item" data-aos="fade" data-aos-delay="200">
-              <figure class="zoom-effect">
-                <img src="images/post-item3.jpg" alt="postitem" class="blog-image">
-              </figure>
-              <div class="post-content">
-                <div class="meta-tags">
-                  <span class="meta-date">Posted on Feb 15, 2020</span>
-                  <span class="meta-author">By <a href="#">Admin</a></span>
-                </div>
-                <h3 class="post-title">
-                  <a href="single-post.html">Journey For Being Ballerina</a>
-                </h3>
-                <p>The path to becoming a ballerina is a delicate dance of dedication and artistry. It's a journey where every plié and tendu is a step towards perfection. With each graceful movement, you're not just learning to dance, but discovering the true essence of expression through ballet.<br> <a href="#" class="link">Read More</a>
-                </p>
-              </div>
             </div>
           </div>
         </div>
-        <div class="btn-center">
-          <a href="blog.html" class="btn btn-outline-primary btn-pill btn-medium">Read All Blog</a>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="class-item" data-aos="fade" data-aos-delay="200">
+              <figure>
+                <img src="images/team-member4.jpg" alt="video">
+                <figcaption class="p-5 text-white">
+                  <h2 class="text-white m-0">Hip Hop</h2>
+                  <p class="m-0">BY Ahmed SAOUDI</p>
+                  <a href="connexion" class="btn btn-outline-light rounded-pill">JOIN Class</a>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="class-item" data-aos="fade" data-aos-delay="300">
+              <figure>
+                <img src="images/flamenco-2.jpg" alt="video">
+                <figcaption class="p-5 text-white">
+                  <h2 class="text-white m-0">Ballet</h2>
+                    <p class="m-0">BY Ahlem MASOUDI</p>
+                  <a href="connexion" class="btn btn-outline-light rounded-pill">JOIN Class</a>
+                 
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="class-item" data-aos="fade" data-aos-delay="400">
+              <figure>
+                <img src="images/video-item4.jpg" alt="video">
+                <figcaption class="p-5 text-white">
+                  <h2 class="text-white m-0">Musical Theatre</h2>
+                  <p class="m-0">BY Omar HAJ TAIEB </p>
+                  <a href="connexion" class="btn btn-outline-light rounded-pill">JOIN Class</a>
+                  <a href="connexion" class="btn btn-outline-light rounded-pill iconRed">
+
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                   <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                  <i class="bi bi-heart-fill " ></i></svg></a>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+         <div class="btn-center">
+        <a href="cour" class="btn btn-outline-primary btn-pill btn-medium">more</a>
+      </div>
+  </section>
     
     <section id="instagram">
       <div class="section-header text-center">
@@ -301,7 +338,7 @@
             </div>
             <div class="col-md-2 col-sm-4">
               <figure class="zoom-effect magnific">
-                <a href="images/largeitem4.jpg">
+                <a href="images/pic2.jpg">
                   <img src="images/item4.jpg" alt="instagram">
                   <div class="icon-overlay">
                     <i class="icon icon-instagram1"></i>

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ConnexionController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<section id="newsletter" class="newsletter padding-large no-padding-top">
+    <div class="container position-relative">
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <div class="image-holder">
+            <img src="images/introimg.png" alt="dancer" class="newsletter-image">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-content">
+            <div class="section-header">
+              <h2 class="section-title text-center mb-0">
+                <span class="text-primary">Sign In To</span> Get Connected
+              </h2>
+            </div>
+            <form id="form">
+              <input type="Email" name="fullname" placeholder="Type Your Email" data-name="fullname" required
+                class="bg-light u-full-width">
+              <input type="Password" name="email" placeholder="Type Your Password" required="" data-name="email"
+                class="bg-light u-full-width">
+              <div class="btn-submit align-center">
+                <button class="submit btn btn-pill btn-medium btn-primary btn-full" type="submit">Sign In</button>
+                             <a href="register" class="button" class="btn btn-outline-secondary" >Create an Account</a>
+
+              </div>
+              
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
