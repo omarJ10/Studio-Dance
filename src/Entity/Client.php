@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ClientRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -49,6 +51,16 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="integer")
      */
     private $Telephone;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Avis::class, mappedBy="client")
+     */
+    private $Avis_id;
+
+    public function __construct()
+    {
+        $this->Avis_id = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -174,4 +186,34 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+   /**
+    * @return Collection<int, Avis>
+    */
+   public function getAvisId(): Collection
+   {
+       return $this->Avis_id;
+   }
+
+   public function addAvisId(Avis $avisId): self
+   {
+       if (!$this->Avis_id->contains($avisId)) {
+           $this->Avis_id[] = $avisId;
+           $avisId->setClient($this);
+       }
+
+       return $this;
+   }
+
+   public function removeAvisId(Avis $avisId): self
+   {
+       if ($this->Avis_id->removeElement($avisId)) {
+           // set the owning side to null (unless already changed)
+           if ($avisId->getClient() === $this) {
+               $avisId->setClient(null);
+           }
+       }
+
+       return $this;
+   }
 }
