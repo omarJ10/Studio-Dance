@@ -39,6 +39,21 @@ class Coach
      */
     private $cours;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Offre::class, inversedBy="Coach_id")
+     */
+    private $offre;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $img;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Domaine::class, inversedBy="id_coach")
+     */
+    private $domaine;
+
     public function __construct()
     {
         $this->cours = new ArrayCollection();
@@ -111,6 +126,42 @@ class Coach
                 $cour->setCoach(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOffre(): ?Offre
+    {
+        return $this->offre;
+    }
+
+    public function setOffre(?Offre $offre): self
+    {
+        $this->offre = $offre;
+
+        return $this;
+    }
+
+    public function getImg(): ?string
+    {
+        return $this->img;
+    }
+
+    public function setImg(string $img): self
+    {
+        $this->img = $img;
+
+        return $this;
+    }
+
+    public function getDomaine(): ?Domaine
+    {
+        return $this->domaine;
+    }
+
+    public function setDomaine(?Domaine $domaine): self
+    {
+        $this->domaine = $domaine;
 
         return $this;
     }
