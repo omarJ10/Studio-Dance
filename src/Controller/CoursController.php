@@ -87,4 +87,43 @@ class CoursController extends AbstractController
 
         return $this->redirectToRoute('app_cours_index', [], Response::HTTP_SEE_OTHER);
     }
+     /**
+ * @Route("/setimage", name="app_setimage")
+ */
+public function showimg(CoursRepository $coursRepository)
+{
+    $publicImagePath = $this->getParameter('kernel.project_dir') . '/public/images/';
+
+    $finder1 = new Finder();
+    $finder1->files()->in($publicImagePath);
+
+    $entityManager = $this->getDoctrine()->getManager();
+
+    foreach ($finder1 as $file) {
+        $imageName = $file->getFilename();
+
+        // Vérifiez si l'image existe déjà dans la base de données
+        $existingCours = $coursRepository->findOneBy(['image' => $imageName]);
+
+        if (!$existingCours) {
+            // Si l'image n'existe pas, créez une nouvelle entité Cours et enregistrez le nom de l'image
+            $cours = new Cours();
+            $cours->setImage($imageName);
+
+            $entityManager->persist($cours);
+        }
+    }
+
+    // Exécutez les opérations de base de données
+    $entityManager->flush();
+
+    // Récupérez tous les cours après l'ajout des images
+    $cours = $coursRepository->findAll();
+
+    return $this->render('setimage/index.html.twig', [
+        'controller_name' => 'SetimageController',
+        'imageNames' => $imageNames,
+    ]);
+}
+
 }
