@@ -40,6 +40,12 @@ class Coach
      */
     private $cours;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Domaine::class, inversedBy="coaches")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $domaine_id;
+
     
 
     public function __construct()
@@ -114,6 +120,18 @@ class Coach
                 $cour->setCoach(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDomaineId(): ?Domaine
+    {
+        return $this->domaine_id;
+    }
+
+    public function setDomaineId(?Domaine $domaine_id): self
+    {
+        $this->domaine_id = $domaine_id;
 
         return $this;
     }

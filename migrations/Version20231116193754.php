@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20231115224442 extends AbstractMigration
+final class Version20231116193754 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,12 +20,16 @@ final class Version20231115224442 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('DROP TABLE user');
+        $this->addSql('ALTER TABLE coach ADD domaine_id_id INT NOT NULL');
+        $this->addSql('ALTER TABLE coach ADD CONSTRAINT FK_3F596DCC960C841E FOREIGN KEY (domaine_id_id) REFERENCES domaine (id)');
+        $this->addSql('CREATE INDEX IDX_3F596DCC960C841E ON coach (domaine_id_id)');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`, roles JSON NOT NULL, password VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB COMMENT = \'\' ');
+        $this->addSql('ALTER TABLE coach DROP FOREIGN KEY FK_3F596DCC960C841E');
+        $this->addSql('DROP INDEX IDX_3F596DCC960C841E ON coach');
+        $this->addSql('ALTER TABLE coach DROP domaine_id_id');
     }
 }
