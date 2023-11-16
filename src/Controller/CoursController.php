@@ -35,8 +35,21 @@ class CoursController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $coursRepository->add($cour, true);
 
+            $cour = $form->getData();
+            //**************** Manage Uploaded FileName
+            $photo_prod = $form->get('image')->getData();
+            $originalFilename = $photo_prod->getClientOriginalName();
+            $newFilename = $originalFilename.'-'.uniqid().'.'.$photo_prod->getClientOriginalExtension();
+            $photo_prod->move($this->getParameter('images_directory'),$newFilename);
+            $cour->setImage($newFilename);
+            //****************
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($cour);
+            $entityManager->flush();
+
+            $coursRepository->add($cour, true);
             return $this->redirectToRoute('app_cours_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -122,7 +135,7 @@ public function showimg(CoursRepository $coursRepository)
 
     return $this->render('setimage/index.html.twig', [
         'controller_name' => 'SetimageController',
-        'imageNames' => $imageNames,
+        'imageNames' => $imageName,
     ]);
 }
 
