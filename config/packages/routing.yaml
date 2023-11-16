@@ -10,4 +10,8 @@ framework:
 when@prod:
     framework:
         router:
+
             strict_requirements: null
+
+            strict_requirements: null
+

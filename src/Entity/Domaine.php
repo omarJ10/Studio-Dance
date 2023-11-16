@@ -25,13 +25,13 @@ class Domaine
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=Coach::class, mappedBy="domaine")
+     * @ORM\OneToMany(targetEntity=Coach::class, mappedBy="domaine_id")
      */
-    private $id_coach;
+    private $coaches;
 
     public function __construct()
     {
-        $this->id_coach = new ArrayCollection();
+        $this->coaches = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -54,27 +54,27 @@ class Domaine
     /**
      * @return Collection<int, Coach>
      */
-    public function getIdCoach(): Collection
+    public function getCoaches(): Collection
     {
-        return $this->id_coach;
+        return $this->coaches;
     }
 
-    public function addIdCoach(Coach $idCoach): self
+    public function addCoach(Coach $coach): self
     {
-        if (!$this->id_coach->contains($idCoach)) {
-            $this->id_coach[] = $idCoach;
-            $idCoach->setDomaine($this);
+        if (!$this->coaches->contains($coach)) {
+            $this->coaches[] = $coach;
+            $coach->setDomaineId($this);
         }
 
         return $this;
     }
 
-    public function removeIdCoach(Coach $idCoach): self
+    public function removeCoach(Coach $coach): self
     {
-        if ($this->id_coach->removeElement($idCoach)) {
+        if ($this->coaches->removeElement($coach)) {
             // set the owning side to null (unless already changed)
-            if ($idCoach->getDomaine() === $this) {
-                $idCoach->setDomaine(null);
+            if ($coach->getDomaineId() === $this) {
+                $coach->setDomaineId(null);
             }
         }
 

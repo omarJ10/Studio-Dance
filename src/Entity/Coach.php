@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * @ORM\Entity(repositoryClass=CoachRepository::class)
  */
@@ -40,19 +41,12 @@ class Coach
     private $cours;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Offre::class, inversedBy="Coach_id")
+     * @ORM\ManyToOne(targetEntity=Domaine::class, inversedBy="coaches")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $offre;
+    private $domaine_id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $img;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Domaine::class, inversedBy="id_coach")
-     */
-    private $domaine;
+    
 
     public function __construct()
     {
@@ -130,39 +124,17 @@ class Coach
         return $this;
     }
 
-    public function getOffre(): ?Offre
+    public function getDomaineId(): ?Domaine
     {
-        return $this->offre;
+        return $this->domaine_id;
     }
 
-    public function setOffre(?Offre $offre): self
+    public function setDomaineId(?Domaine $domaine_id): self
     {
-        $this->offre = $offre;
+        $this->domaine_id = $domaine_id;
 
         return $this;
     }
 
-    public function getImg(): ?string
-    {
-        return $this->img;
-    }
-
-    public function setImg(string $img): self
-    {
-        $this->img = $img;
-
-        return $this;
-    }
-
-    public function getDomaine(): ?Domaine
-    {
-        return $this->domaine;
-    }
-
-    public function setDomaine(?Domaine $domaine): self
-    {
-        $this->domaine = $domaine;
-
-        return $this;
-    }
+    
 }
