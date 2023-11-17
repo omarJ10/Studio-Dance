@@ -25,6 +25,8 @@
         <meta name="keywords" content="">
         <meta name="description" content="">
         <!-- FOR DEATIL PAGE  -->
+
+
           
           <link rel="stylesheet" href="css/icomoon-social.css">
           <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
@@ -57,7 +59,13 @@
             <script type="text/javascript" src="{{asset ('js/plugins.js') }}"></script>
             <script type="text/javascript" src="{{asset ('js/script.js') }} "></script>
             <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-            
+            <!--FOR THE CALENDAR -->
+                <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                <!-- Include FullCalendar -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+            <!--END THE CALENDAR -->
  
    
         {% endblock %}
@@ -88,8 +96,13 @@
                     <li class="menu-item text-uppercase">
                       <a href="offre" class="item-anchor" data-effect="Blogs">Schedule</a>
                     </li>
+
                     <li class="menu-item text-uppercase">
-                      <a href="login" class="item-anchor" data-effect="Shop">Sign in</a>
+                        {% if app.user %}
+                            <a href="logout" class="item-anchor" data-effect="Shop">Log out</a>
+                        {% else %}
+                            <a href="login" class="item-anchor" data-effect="Shop">Sign in</a>
+                        {% endif %}
                     </li>
                     
                     

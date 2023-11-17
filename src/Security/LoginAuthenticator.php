@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
@@ -22,10 +23,12 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
     public const LOGIN_ROUTE = 'app_login';
 
     private UrlGeneratorInterface $urlGenerator;
+    private RouterInterface $router;
 
-    public function __construct(UrlGeneratorInterface $urlGenerator)
+    public function __construct(RouterInterface $router,UrlGeneratorInterface $urlGenerator)
     {
         $this->urlGenerator = $urlGenerator;
+        $this->router = $router;
     }
 
     public function authenticate(Request $request): Passport
@@ -45,13 +48,19 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+        /*if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
+        }*/
+
+        $role = $token->getUser()->getRoles();
+        if(in_array('ROLE_ADMIN',$role)){
+            return new RedirectResponse($this->router->generate('app_interface_admin'));
+        } else {
+            return new RedirectResponse($this->router->generate('app_index'));
         }
 
-        // For example:
-        return new RedirectResponse($this->urlGenerator->generate('app_index'));
-        //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        //return new RedirectResponse($this->urlGenerator->generate('app_index'));
+
     }
 
     protected function getLoginUrl(Request $request): string
