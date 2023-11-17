@@ -17,7 +17,7 @@ class ClientType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('telephone')
-            ->add('isVerified')
+            //->add('isVerified')
         ;
     }
 
