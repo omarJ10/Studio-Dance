@@ -20,6 +20,7 @@
                                                     <th class="avatar">#</th>
                                                       <th>Nom</th>
                                                      <th>Prenom</th>
+                                                      <th>Domaine</th>
                                                      <th>Salaire</th>
                                                      <th>actions</th>
                                                 </tr>
@@ -32,6 +33,7 @@
                                               <td> #{{ coach.id }}</td>
                                              <td><span class="name">{{ coach.nom }}</td>
                                              <td><span class="product">{{ coach.prenom }}</td>
+                                              <td></td>
                                              <td><span class="count">{{ coach.salaire }}</td>
                                              <td>
                                                  <a class="badge badge-complete" href="{{ path('app_coach_show', {'id': coach.id}) }}">show</a>

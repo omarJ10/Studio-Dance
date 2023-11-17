@@ -1,15 +1,21 @@
-{% extends 'base.html.twig' %}
+{% extends 'base1.html.twig' %}
 
 {% block title %}Cours index{% endblock %}
 
 {% block body %}
-    <h1>Cours index</h1>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1>Cours index</h1>
+<h1>Cours index</h1>
 
     <table class="table">
         <thead>
             <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
                 <th>Id</th>
                 <th>Date</th>
+                
                 <th>Prix</th>
                 <th>Nom</th>
                 <th>Image</th>
@@ -19,6 +25,10 @@
         <tbody>
         {% for cour in cours %}
             <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td>{{ cour.id }}</td>
                 <td>{{ cour.date ? cour.date|date('Y-m-d') : '' }}</td>
                 <td>{{ cour.prix }}</td>
@@ -35,7 +45,10 @@
             </tr>
         {% endfor %}
         </tbody>
+        
     </table>
 
     <a href="{{ path('app_cours_new') }}">Create new</a>
+
+
 {% endblock %}

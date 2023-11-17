@@ -120,6 +120,7 @@
                         <li><i class="fa fa-id-badge"></i><a href="{{ path('app_coach_index') }}">Coach</a></li>
                         <li><i class="fa fa-id-badge"></i><a href="{{ path('app_cours_index') }}">Cours</a></li>
                         <li><i class="fa fa-id-badge"></i><a href="app_offre_index">offres</a></li>
+                       
 
 
                         <!--
@@ -206,9 +207,9 @@
                        aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Components</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="fa fa-id-badge"></i><a href="{{ path('app_client_index') }}">Clients</a></li>
-                        <li><i class="fa fa-id-badge"></i><a href="{{ path('app_admin_index') }}">Admins</a></li>
                         <li><i class="fa fa-id-badge"></i><a href="{{ path('app_coach_index') }}">Coach</a></li>
                         <li><i class="fa fa-id-badge"></i><a href="{{ path('app_cours_index') }}">Cours</a></li>
+                          <li><i class="fa fa-id-badge"></i><a href="{{ path('app_domaine_index') }}">Domaine</a></li>
                         <li><i class="fa fa-id-badge"></i><a href="app_cours_index">offres</a></li>
 
 
@@ -389,8 +390,10 @@
     </header>
     <!-- /#header -->
 </div>
+    <div id="right-panel" class="right-panel">
     {% block body %}
 
     {% endblock %}
+</div>
     </body>
 </html>
