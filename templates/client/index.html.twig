@@ -38,11 +38,14 @@
                                             <td>{{ client.nom }}</td>
                                             <td>{{ client.prenom }}</td>
                                             <td>{{ client.telephone }}</td>
-                                           {% if client.isVerified == 1 %}
-                                              <td>  <span class="badge badge-complete">Payé</span></td>
-                                                {% else %}
-                                                <td> <span class="badge badge-pending">Non Payé</span></td>
-                                           {% endif %}
+                                            {#
+                                                {% if client.isVerified == 1 %}
+                                                  <td>  <span class="badge badge-complete">Payé</span></td>
+                                                    {% else %}
+                                                    <td> <span class="badge badge-pending">Non Payé</span></td>
+                                                {% endif %}
+                                            #}
+
                                             
                                             <td>
                                                 <a class="badge badge-complete"  href="{{ path('app_client_show', {'id': client.id}) }}">show</a>

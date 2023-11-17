@@ -3,10 +3,7 @@
 {% block title %}Hello ConnexionController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+
 
 <section id="newsletter" class="newsletter padding-large no-padding-top">
     <div class="container position-relative">
@@ -22,20 +19,30 @@
               </h2>
             </div>
             <form id="form">
-             
-                <input type="Text" name="fullname" placeholder="First Name" data-name="fullname" required
-                class="bg-light u-full-width">
-                <input type="Text" name="fullname" placeholder=" Name" data-name="fullname" required
-                class="bg-light u-full-width">
-                <input type="Text" name="fullname" placeholder=" Phone Number" data-name="fullname" required
-                class="bg-light u-full-width">
-              <input type="Text" name="fullname" placeholder="Type Your Email" data-name="fullname" required
-                class="bg-light u-full-width">
-              <input type="Text" name="email" placeholder="Type Your Password" required="" data-name="email"
-                class="bg-light u-full-width">
-              <div class="btn-submit align-center">
-                <button class="submit btn btn-pill btn-medium btn-primary btn-full" type="submit">Sign Up</button>
-              </div>
+
+                <label>
+                    <input type="Text" name="fullname" placeholder="First Name" data-name="fullname" required
+                      class="bg-light u-full-width">
+                </label>
+                <label>
+                    <input type="Text" name="fullname" placeholder=" Name" data-name="fullname" required
+                      class="bg-light u-full-width">
+                </label>
+                <label>
+                    <input type="Text" name="fullname" placeholder=" Phone Number" data-name="fullname" required
+                      class="bg-light u-full-width">
+                </label>
+                <label>
+                    <input type="Text" name="fullname" placeholder="Type Your Email" data-name="fullname" required
+                      class="bg-light u-full-width">
+                </label>
+                <label>
+                    <input type="Text" name="email" placeholder="Type Your Password" required="" data-name="email"
+                      class="bg-light u-full-width">
+                </label>
+                <div class="btn-submit align-center">
+                  <button class="submit btn btn-pill btn-medium btn-primary btn-full" type="submit">Sign Up</button>
+                </div>
 
             </form>
           </div>
