@@ -21,6 +21,7 @@
                                                       <th>Nom</th>
                                                      <th>Prenom</th>
                                                      <th>Salaire</th>
+                                                     <th>Image</th>
                                                      <th>actions</th>
                                                 </tr>
                                             </thead>
@@ -28,15 +29,27 @@
                                                
                                                 {% for coach in coaches %} 
                                                 <tr>
-                                                   <td> </td>
+                                                   <td> {{dump(coach.image)}} </td>
                                               <td> #{{ coach.id }}</td>
                                              <td><span class="name">{{ coach.nom }}</td>
                                              <td><span class="product">{{ coach.prenom }}</td>
+
+                                            <td><span class="count">{{ coach.getDomaineId().description }}</td>
+
+                                            
+
                                              <td><span class="count">{{ coach.salaire }}</td>
+                                             <td>
+                                            <img style="width:170px" src="{{ asset('/img/' ~ coach.image) }}">
+
+                                            </td>
+
                                              <td>
                                                  <a class="badge badge-complete" href="{{ path('app_coach_show', {'id': coach.id}) }}">show</a>
                                                  <a class="badge badge-complete" href="{{ path('app_coach_edit', {'id': coach.id}) }}">edit</a>
                                              </td>
+                                             
+                                             
                                           {% endfor %}
                                           </tr>
                                             </tbody>

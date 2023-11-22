@@ -8,20 +8,23 @@
 
 {% block body %}
   
-<section class="hero-section jarallax light-content">
-      <img src="images/hero-image1.jpg" class="jarallax-img">
-      <div class="hero-content padding-xlarge">
-        <div class="container">
-          <div class="row">
-            <div class="content-light">
-              <h1 class="page-title text-uppercase">cour</h1>
-              <div class="breadcrumbs">
-                <span class="item">
-                  <a href="index">Home /</a>
-                </span>
-                <span class="item">cour</span>
-              </div>
+<div class="post-wrap padding-large">
+  <div class="container">
+    <div class="row">
+      <main class="post-list post-card-small">
+        {% for cour in cours %}
+        <div class="col-md-4">              
+          <article class="post-item">
+            <div class="post-image zoom-effect">
+              <a href="">
+                <img style="width:100%" src="{{ asset('/img/' ~ cour.image) }}">
+              </a>
             </div>
+
+            <div class="post-content">
+              <div class="meta-tags text-uppercase">
+              <span class="post-category">the cour starts at {{ cour.date|date('Y-m-d H:i:s') }}</span>
+
           </div>
         </div>
       </div>
@@ -186,6 +189,22 @@
                   </article>
                 </div>                
               </div>
+              <h3 class="post-title">
+                <a href="single-post.html" style="font-size: 30px;">By  {{cour.getCoach() }}</a><br>
+              </h3>
+              <p>{{cour.description}}</p>
+              <a class="btn btn-primary" href="  {{ path('app_cour_detail', {'id': cour.id}) }}">Read More</a>
+            
+            </div>
+          </article>
+        </div>
+        {% endfor %}
+      </main>
+    </div>
+  </div>
+</div>
+
+                
             <nav class="navigation paging-navigation text-center padding-medium" role="navigation">
               <div class="pagination loop-pagination d-flex justify-content-center">
                 <a href="#">

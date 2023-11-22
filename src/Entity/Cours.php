@@ -38,7 +38,7 @@ class Cours
     private $image;
 
     /**
-     * @ORM\ManyToOne(targetEntity=coach::class, inversedBy="cours")
+     * @ORM\ManyToOne(targetEntity=Coach::class, inversedBy="cours")
      * @ORM\JoinColumn(nullable=false)
      */
     private $Coach;

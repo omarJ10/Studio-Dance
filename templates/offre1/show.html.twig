@@ -25,7 +25,7 @@
             </tr>
             <tr>
                 <th>Date_fin</th>
-                <td>{{ offre.dateFin }}</td>
+                <td>{{ offre.dateFin ? offre.dateFin|date('Y-m-d') : '' }}</td>
             </tr>
         </tbody>
     </table>

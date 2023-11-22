@@ -95,7 +95,12 @@
                         <li><i class="fa fa-id-badge"></i><a href="{{ path('app_client_index') }}">Clients</a></li>
                         <li><i class="fa fa-id-badge"></i><a href="{{ path('app_coach_index') }}">Coach</a></li>
                         <li><i class="fa fa-id-badge"></i><a href="{{ path('app_cours_index') }}">Cours</a></li>
+
+                        <li><i class="fa fa-id-badge"></i><a href="{{ path('app_domaine_index') }}">Domaine</a></li>
+                        <li><i class="fa fa-id-badge"></i><a href="{{ path('app_offre1_index')}}">Offres</a></li>
+
                         <li><i class="fa fa-id-badge"></i><a href="{{ path('app_offre1_index') }}">Offres</a></li>
+
 
                     </ul>
                 </li>
@@ -106,6 +111,7 @@
     </nav>
 </aside>
 <!-- /#left-panel -->
+<!-- /#left-panel -->
 <!-- Right Panel -->
 <div id="right-panel" class="right-panel">
     <!-- Header-->
@@ -113,8 +119,9 @@
         <div class="top-left">
             <div class="navbar-header">
                 <a class="navbar-brand" href="./"><img src="{{ asset ('images copy/logo.png') }}" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="./"><img src="{{ asset ('images copy/logo2.png') }}"
-                                                              alt="Logo"></a>
+                <a class="navbar-brand hidden" href="./">
+                    <img src="{{ asset ('images copy/logo2.png') }}" alt="Logo">
+                </a>
                 <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
             </div>
         </div>
@@ -162,8 +169,8 @@
                         <div class="dropdown-menu" aria-labelledby="message">
                             <p class="red">You have 4 Mails</p>
                             <a class="dropdown-item media" href="#">
-                                <span class="photo media-left"><img alt="avatar"
-                                                                    src="{{ asset ('images copy/avatar/1.jpg') }}"></span>
+                                <span class="photo media-left">
+                                    <img alt="avatar" src="{{ asset ('images copy/avatar/1.jpg') }}"></span>
                                 <div class="message media-body">
                                     <span class="name float-left">Jonathan Smith</span>
                                     <span class="time float-right">Just now</span>
@@ -171,8 +178,7 @@
                                 </div>
                             </a>
                             <a class="dropdown-item media" href="#">
-                                <span class="photo media-left"><img alt="avatar"
-                                                                    src="{{ asset ('images copy/avatar/2.jpg') }}"></span>
+                                <span class="photo media-left"><img alt="avatar" src="images copy/avatar/2.jpg"></span>
                                 <div class="message media-body">
                                     <span class="name float-left">Jack Sanders</span>
                                     <span class="time float-right">5 minutes ago</span>
@@ -180,8 +186,7 @@
                                 </div>
                             </a>
                             <a class="dropdown-item media" href="#">
-                                <span class="photo media-left"><img alt="avatar"
-                                                                    src="{{ asset ('images copy/avatar/3.jpg') }}"></span>
+                                <span class="photo media-left"><img alt="avatar" src="images copy/avatar/3.jpg"></span>
                                 <div class="message media-body">
                                     <span class="name float-left">Cheryl Wheeler</span>
                                     <span class="time float-right">10 minutes ago</span>
@@ -189,8 +194,7 @@
                                 </div>
                             </a>
                             <a class="dropdown-item media" href="#">
-                                <span class="photo media-left"><img alt="avatar"
-                                                                    src="{{ asset ('images copy/avatar/4.jpg') }}"></span>
+                                <span class="photo media-left"><img alt="avatar" src="images copy/avatar/4.jpg"></span>
                                 <div class="message media-body">
                                     <span class="name float-left">Rachel Santos</span>
                                     <span class="time float-right">15 minutes ago</span>
@@ -204,17 +208,15 @@
                 <div class="user-area dropdown float-right">
                     <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">
-                        <a href="{{ path('app_admin_index') }}">Admins<img class="user-avatar rounded-circle"
-                                                                           src="{{ asset ('images copy/admin.jpg') }}"
-                                                                           alt="User Avatar"></a>
+                        <img class="user-avatar rounded-circle" src="{{ asset ('images copy/admin.jpg') }}"
+                             alt="User Avatar">
                     </a>
 
                     <div class="user-menu dropdown-menu">
                         <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
 
-                        <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span
-                                    class="count">13</span></a>
-
+                        <a class="nav-link" href="#"><i class="fa fa- user">
+                            </i>Notifications <span class="count">13</span></a>
                         <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 
                         <a class="nav-link" href="logout"><i class="fa fa-power -off"></i>Logout</a>
@@ -224,7 +226,6 @@
             </div>
         </div>
     </header>
-    <!-- /#header -->
     <!-- Content -->
     <div class="content">
         <!-- Animated -->
@@ -434,7 +435,7 @@
                                         <a href="{{ path('app_coach_index') }}"> <img
                                                     class="rounded-circle mx-auto d-block"
                                                     src="{{ asset ('coach.jpg') }}" alt="Card image cap" width="100"
-                                                    height="180"></a>
+                                                    height="190"></a>
                                         <h5 class="text-sm-center mt-2 mb-1">Gestion des coach</h5>
                                     </div>
                                     <hr>
@@ -453,7 +454,7 @@
                                         <a href="{{ path('app_client_index') }}"><img
                                                     class="rounded-circle mx-auto d-block"
                                                     src="{{ asset ('client.jpg') }}" alt="Card image cap" width="100"
-                                                    height="150"></a>
+                                                    height="190"></a>
                                         <h5 class="text-sm-center mt-2 mb-1">Gestion de Client</h5>
                                         <!--div class="location text-sm-center"><i class="fa fa-map-marker"></i> California, United States</div-->
                                     </div>

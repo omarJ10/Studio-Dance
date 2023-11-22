@@ -19,8 +19,12 @@ class CoursType extends AbstractType
             ->add('date',DateType::class)
             ->add('prix',MoneyType::class)
             ->add('nom')
+            ->add('description')
+
             ->add('image',FileType::class,
                     [
+                        'data_class' => null,
+                        'attr' => ['class' => 'form-control mt-2'],
                         'constraints'=> new File(
                             [
                                 'mimeTypes'=>[
