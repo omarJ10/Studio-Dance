@@ -20,7 +20,9 @@ contact:
 about:
   path: /about
   controller: App\Controller\AboutController::index
-
+course_details:
+  path: '/course/{id}'
+  controller: 'App\Controller\CourseController::showDetails'
 
 
 

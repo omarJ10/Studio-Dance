@@ -9,12 +9,12 @@
             <div class="container">
                 <div class="row">
                     <div class="content-light">
-                        <h1 class="page-title text-uppercase">cour</h1>
+                        <h1 class="page-title text-uppercase">Course Details</h1>
                         <div class="breadcrumbs">
-                <span class="item">
-                  <a href="index">Home /</a>
-                </span>
-                            <span class="item">cour</span>
+                            <span class="item">
+                              <a href="index">Home /</a>
+                            </span>
+                            <span class="item">Course Details</span>
                         </div>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
     </section>
 
 
-    <div class="section">
+    <div class="section" style="padding-top: 30px">
         <div class="container">
             <div class="row">
                 <!-- Product Image & Available Colors -->
@@ -51,8 +51,9 @@
                             <td><b>Color:</b></td>
                             <td>
                                 <div class="dropdown choose-item-color">
-                                    <a class="btn btn-sm btn-grey" data-toggle="dropdown" href="#"><span
-                                                class="color-orange"></span> Orange <b class="caret"></b></a>
+                                    <a class="btn btn-sm btn-grey" data-toggle="dropdown" href="#">
+                                        <span class="color-orange"></span> Orange <b class="caret"></b>
+                                    </a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li role="menuitem"><a href="#"><span class="color-white"></span> White</a></li>
                                         <li role="menuitem"><a href="#"><span class="color-black"></span> Black</a></li>
@@ -101,86 +102,31 @@
                 <!-- End Product Summary & Options -->
 
                 <!-- Full Description & Specification -->
-                <div class="col-sm-12">
-                    <div class="tabbable">
-                        <!-- Tabs -->
-                        <ul class="nav nav-tabs product-details-nav">
-                            <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
-                            <li><a href="#tab2" data-toggle="tab">Specification</a></li>
-                        </ul>
-                        <!-- Tab Content (Full Description) -->
-                        <div class="tab-content product-detail-info">
-                            <div class="tab-pane active" id="tab1">
-                                <h4>Product Description</h4>
-                                <p>
-                                    Donec hendrerit massa metus, a ultrices elit iaculis eu. Pellentesque ullamcorper
-                                    augue lacus. Phasellus et est quis diam iaculis fringilla id nec sapien. Sed tempor
-                                    ornare felis, non vulputate dolor. Etiam ornare diam vitae ligula malesuada tempor.
-                                    Vestibulum nec odio vel libero ullamcorper euismod et in sapien. Suspendisse
-                                    potenti.
-                                </p>
-                                <h4>Product Highlights</h4>
-                                <ul>
-                                    <li>Nullam dictum augue nec iaculis rhoncus. Aenean lobortis fringilla orci, vitae
-                                        varius purus eleifend vitae.
-                                    </li>
-                                    <li>Nunc ornare, dolor a ultrices ultricies, magna dolor convallis enim, sed
-                                        volutpat quam sem sed tellus.
-                                    </li>
-                                    <li>Aliquam malesuada cursus urna a rutrum. Ut ultricies facilisis suscipit.</li>
-                                    <li>Duis a magna iaculis, aliquam metus in, luctus eros.</li>
-                                    <li>Aenean nisi nibh, imperdiet sit amet eleifend et, gravida vitae sem.</li>
-                                    <li>Donec quis nisi congue, ultricies massa ut, bibendum velit.</li>
-                                </ul>
-                                <h4>Usage Information</h4>
-                                <p>
-                                    Donec hendrerit massa metus, a ultrices elit iaculis eu. Pellentesque ullamcorper
-                                    augue lacus. Phasellus et est quis diam iaculis fringilla id nec sapien. Sed tempor
-                                    ornare felis, non vulputate dolor. Etiam ornare diam vitae ligula malesuada tempor.
-                                    Vestibulum nec odio vel libero ullamcorper euismod et in sapien. Suspendisse
-                                    potenti.
-                                </p>
-                            </div>
-                            <!-- Tab Content (Specification) -->
-                            <div class="tab-pane" id="tab2">
-                                <table>
-                                    <tr>
-                                        <td>Total sensor Pixels (megapixels)</td>
-                                        <td>Approx. 16.7</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Effective Pixels (megapixels)</td>
-                                        <td>Approx. 16.1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Automatic White Balance</td>
-                                        <td>YES</td>
-                                    </tr>
-                                    <tr>
-                                        <td>White balance: preset selection</td>
-                                        <td>Daylight, Shade, Cloudy, Incandescent, Fluorescent, Flash</td>
-                                    </tr>
-                                    <tr>
-                                        <td>White balance: custom setting</td>
-                                        <td>YES</td>
-                                    </tr>
-                                    <tr>
-                                        <td>White balance: types of color temperature</td>
-                                        <td>YES (G7 to M7,15-step) (A7 to B7,15-step)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>White balance bracketing</td>
-                                        <td>NO</td>
-                                    </tr>
-                                    <tr>
-                                        <td>ISO Sensitivity Setting</td>
-                                        <td>ISO100 - 25600 equivalent</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
+
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation" style="padding-right: 10px">
+                        <button class="nav-link active" id="pills-desc-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-desc" type="button" role="tab" aria-controls="pills-home"
+                                aria-selected="true">Course Description
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-spec-tab" data-bs-toggle="pill" data-bs-target="#pills-spec"
+                                type="button" role="tab" aria-controls="pills-home" aria-selected="true">Coach
+                            Description
+                        </button>
+                    </li>
+                </ul>
+                <!-- Tabs -->
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-desc" role="tabpanel" aria-labelledby="pills-desc-tab" tabindex="0">
+                        COURSE DETAILS
+                    </div>
+                    <div class="tab-pane fade" id="pills-spec" role="tabpanel" aria-labelledby="pills-spec-tab"
+                         tabindex="0">Coach
                     </div>
                 </div>
+
                 <!-- End Full Description & Specification -->
             </div>
         </div>

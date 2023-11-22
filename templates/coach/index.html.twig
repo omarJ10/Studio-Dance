@@ -3,54 +3,63 @@
 {% block title %}Coach index{% endblock %}
 
 {% block body %}
-  <!-- Orders -->
-                <div class="orders">
-                    <div class="row">
-                        <div class="col-xl-8">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="box-title">Coachs </h4>
-                                </div>
-                                <div class="card-body--">
-                                    <div class="table-stats order-table ov-h">
-                                        <table class="table ">
-                                            <thead>
-                                                <tr>
-                                                    <th class="serial">Avatar</th>
-                                                    <th class="avatar">#</th>
-                                                      <th>Nom</th>
-                                                     <th>Prenom</th>
-                                                     <th>Salaire</th>
-                                                     <th>actions</th>
-                                                </tr>
-                                            </thead>
-                                             <tbody>
-                                               
-                                                {% for coach in coaches %} 
-                                                <tr>
-                                                   <td> </td>
-                                              <td> #{{ coach.id }}</td>
-                                             <td><span class="name">{{ coach.nom }}</td>
-                                             <td><span class="product">{{ coach.prenom }}</td>
-                                             <td><span class="count">{{ coach.salaire }}</td>
-                                             <td>
-                                                 <a class="badge badge-complete" href="{{ path('app_coach_show', {'id': coach.id}) }}">show</a>
-                                                 <a class="badge badge-complete" href="{{ path('app_coach_edit', {'id': coach.id}) }}">edit</a>
-                                             </td>
-                                          {% endfor %}
-                                          </tr>
-                                            </tbody>
-                    
-                                             
-                                        </table><a class="badge badge-complete" href="{{ path('app_coach_new') }}">Ajouter coach</a>
-                                    </div> <!-- /.table-stats -->
-                                </div>
-                            </div>
-                                </div>
+    <!-- Orders -->
+    <div class="orders">
+        <div class="row">
+            <div class="col-xl-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="box-title">Coachs </h4>
+                    </div>
+                    <div class="card-body--">
+                        <div class="table-stats order-table ov-h">
+                            <table class="table ">
+                                <thead>
+                                <tr>
+                                    <th class="serial">Avatar</th>
+                                    <th class="avatar">#</th>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Salaire</th>
+                                    <th>Image</th>
+                                    <th>Domaine</th>
+                                    <th>actions</th>
 
-                                
-                        </div> <!-- /.col-md-4 -->
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr>
+                                    {% for coach in coaches %}
+                                        <td></td>
+                                        <td> #{{ coach.id }}</td>
+                                        <td><span class="name">{{ coach.nom }}</td>
+                                        <td><span class="product">{{ coach.prenom }}</td>
+                                        <td><span class="count">{{ coach.salaire }}</td>
+                                        <td>{{ coach.getDomainName() }}</td>
+                                        <td><img style="width:170px" src="/images/{{ coach.image }}" alt=""></td>
+
+                                        <td>
+                                            <a class="badge badge-complete"
+                                               href="{{ path('app_coach_show', {'id': coach.id}) }}">show</a>
+                                            <a class="badge badge-complete"
+                                               href="{{ path('app_coach_edit', {'id': coach.id}) }}">edit</a>
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                                </tbody>
+
+
+                            </table>
+                            <a class="badge badge-complete" href="{{ path('app_coach_new') }}">Ajouter coach</a>
+                        </div> <!-- /.table-stats -->
                     </div>
                 </div>
-                <!-- /.orders -->
+            </div>
+
+
+        </div> <!-- /.col-md-4 -->
+    </div>
+    </div>
+    <!-- /.orders -->
 {% endblock %}

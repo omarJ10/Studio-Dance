@@ -34,7 +34,20 @@ class CoachController extends AbstractController
         $form = $this->createForm(CoachType::class, $coach);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $coach = $form->getData();
+            //**************** Manage Uploaded FileName
+            $photo_prod = $form->get('image')->getData();
+            $originalFilename = $photo_prod->getClientOriginalName();
+            $newFilename = $originalFilename.'-'.uniqid().'.'.$photo_prod->getClientOriginalExtension();
+            $photo_prod->move($this->getParameter('images_directory'),$newFilename);
+            $coach->setImage($newFilename);
+            //****************
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($coach);
+            $entityManager->flush();
+
             $coachRepository->add($coach, true);
 
             return $this->redirectToRoute('app_coach_index', [], Response::HTTP_SEE_OTHER);
@@ -46,11 +59,13 @@ class CoachController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/{id}", name="app_coach_show", methods={"GET"})
      */
     public function show(Coach $coach): Response
     {
+
         return $this->render('coach/show.html.twig', [
             'coach' => $coach,
         ]);
@@ -66,7 +81,6 @@ class CoachController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $coachRepository->add($coach, true);
-
             return $this->redirectToRoute('app_coach_index', [], Response::HTTP_SEE_OTHER);
         }
 
