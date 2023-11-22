@@ -131,15 +131,4 @@ class CoursController extends AbstractController
     }
 
 
-    // Exécutez les opérations de base de données
-    $entityManager->flush();
-
-    // Récupérez tous les cours après l'ajout des images
-    $cours = $coursRepository->findAll();
-
-    return $this->render('setimage/index.html.twig', [
-        'controller_name' => 'SetimageController',
-        'imageNames' => $imageName,
-    ]);
-
 }
