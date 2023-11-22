@@ -20,7 +20,6 @@
                                                     <th class="avatar">#</th>
                                                       <th>Nom</th>
                                                      <th>Prenom</th>
-                                                      <th>Domaine</th>
                                                      <th>Salaire</th>
                                                      <th>Image</th>
                                                      <th>actions</th>
@@ -34,9 +33,11 @@
                                               <td> #{{ coach.id }}</td>
                                              <td><span class="name">{{ coach.nom }}</td>
                                              <td><span class="product">{{ coach.prenom }}</td>
+
                                             <td><span class="count">{{ coach.getDomaineId().description }}</td>
 
                                             
+
                                              <td><span class="count">{{ coach.salaire }}</td>
                                              <td>
                                             <img style="width:170px" src="{{ asset('/img/' ~ coach.image) }}">

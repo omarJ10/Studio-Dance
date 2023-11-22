@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Cours;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Cours;  // Assurez-vous que vous utilisez la classe Cours
+
 use App\Repository\CoursRepository;  // Assurez-vous que vous utilisez la classe CoursRepository
 
 class CourController extends AbstractController
@@ -20,4 +21,20 @@ class CourController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @Route("/course/{id}", name="course_details")
+     */
+    public function showDetails($id): Response
+    {
+        $course = $this->getDoctrine()->getRepository(Cours::class)->find($id);
+
+        if (!$course) {
+            throw $this->createNotFoundException('Course not found');
+        }
+
+        return $this->render('course/details.html.twig', [
+            'course' => $course,
+        ]);
+    }
 }
