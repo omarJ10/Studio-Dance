@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 
 /**
  * @Route("/cours")
@@ -102,6 +103,14 @@ class CoursController extends AbstractController
         return $this->redirectToRoute('app_cours_index', [], Response::HTTP_SEE_OTHER);
     }
 
+     /**
+ * @Route("/setimage", name="app_setimage")
+ */
+/*public function showimg(CoursRepository $coursRepository)
+{
+    $publicImagePath = $this->getParameter('kernel.project_dir') . '/public/images/';
+
+
     /**
      * @Route("/get-cours", name="get_cours", methods={"GET"})
      */
@@ -120,5 +129,17 @@ class CoursController extends AbstractController
 
         return new JsonResponse($formattedCours);
     }
+
+
+    // Exécutez les opérations de base de données
+    $entityManager->flush();
+
+    // Récupérez tous les cours après l'ajout des images
+    $cours = $coursRepository->findAll();
+
+    return $this->render('setimage/index.html.twig', [
+        'controller_name' => 'SetimageController',
+        'imageNames' => $imageName,
+    ]);
 
 }

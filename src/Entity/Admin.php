@@ -2,17 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\ClientRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Repository\AdminRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass=ClientRepository::class)
+ * @ORM\Entity(repositoryClass=AdminRepository::class)
  */
-class Client implements UserInterface, PasswordAuthenticatedUserInterface
+class Admin implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
@@ -36,31 +34,6 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string")
      */
     private $password;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $nom;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $prenom;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $Telephone;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Avis::class, mappedBy="client")
-     */
-    private $Avis_id;
-
-    public function __construct()
-    {
-        $this->Avis_id = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -150,70 +123,4 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): self
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getTelephone(): ?int
-    {
-        return $this->Telephone;
-    }
-
-    public function setTelephone(int $Telephone): self
-    {
-        $this->Telephone = $Telephone;
-
-        return $this;
-    }
-
-   /**
-    * @return Collection<int, Avis>
-    */
-   public function getAvisId(): Collection
-   {
-       return $this->Avis_id;
-   }
-
-   public function addAvisId(Avis $avisId): self
-   {
-       if (!$this->Avis_id->contains($avisId)) {
-           $this->Avis_id[] = $avisId;
-           $avisId->setClient($this);
-       }
-
-       return $this;
-   }
-
-   public function removeAvisId(Avis $avisId): self
-   {
-       if ($this->Avis_id->removeElement($avisId)) {
-           // set the owning side to null (unless already changed)
-           if ($avisId->getClient() === $this) {
-               $avisId->setClient(null);
-           }
-       }
-
-       return $this;
-   }
 }

@@ -33,7 +33,10 @@ class Domaine
     {
         $this->coaches = new ArrayCollection();
     }
-
+    public function __toString()
+    {
+        return $this->description; 
+    }
     public function getId(): ?int
     {
         return $this->id;
