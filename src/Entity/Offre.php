@@ -35,7 +35,7 @@ class Offre
     private $image;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="date")
      */
     private $date_fin;
 
@@ -90,17 +90,19 @@ class Offre
         return $this;
     }
 
-    public function getDateFin(): ?string
+    public function getDateFin(): ?\DateTimeInterface
     {
         return $this->date_fin;
     }
+    
 
-    public function setDateFin(string $date_fin): self
+
+    public function setDateFin(\DateTimeInterface $date): self
     {
-        $this->date_fin = $date_fin;
-
-        return $this;
+        $this->date_fin = $date;
     }
+    
+    
 
     /**
      * @return Collection<int, Coach>

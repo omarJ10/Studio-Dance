@@ -40,9 +40,12 @@ class Coach
      */
     private $cours;
 
+
+
     /**
      * @ORM\ManyToOne(targetEntity=Domaine::class, inversedBy="coaches")
      * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="domaine_id", referencedColumnName="id")
      */
     private $domaine_id;
 
@@ -51,11 +54,19 @@ class Coach
      */
     private $image;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Offre::class, inversedBy="coaches")
+     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="offre_id", referencedColumnName="id")
+     */
+    private $offre_id;
+
     
 
     public function __construct()
     {
         $this->cours = new ArrayCollection();
+        $this->offre_id = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -63,10 +74,20 @@ class Coach
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getOffreId(): ?Offre
     {
-        return $this->nom;
+        return $this->offre_id;
     }
+
+    public function setoffreId(?Domaine $offre_id): self
+    {
+        $this->offre_id = $offre_id;
+
+        return $this;
+    }
+    public function __toString()
+    {
+        return $this->prenom . " " . $this->nom;    }
 
     public function setNom(string $nom): self
     {
@@ -78,6 +99,10 @@ class Coach
     public function getPrenom(): ?string
     {
         return $this->prenom;
+    }
+    public function getNom()
+    {
+        return $this->nom;
     }
 
     public function setPrenom(string $prenom): self

@@ -3,9 +3,19 @@
 {% block title %}Offre index{% endblock %}
 
 {% block body %}
-    <h1>Offre index</h1>
+ 
+ <!-- Orders -->
+                <div class="orders">
+                    <div class="row">
+                        <div class="col-xl-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="box-title">offre </h4>
+                                </div>
+                                <div class="card-body--">
+                                    <div class="table-stats order-table ov-h">
+                                        <table class="table ">
 
-    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
@@ -23,7 +33,7 @@
                 <td>{{ offre.date ? offre.date|date('Y-m-d') : '' }}</td>
                 <td>{{ offre.prix }}</td>
                 <td>{{ offre.image }}</td>
-                <td>{{ offre.dateFin }}</td>
+                <td>{{ offre.dateFin ? offre.dateFin|date('Y-m-d') : ''  }}</td>
                 <td>
                     <a href="{{ path('app_offre1_show', {'id': offre.id}) }}">show</a>
                     <a href="{{ path('app_offre1_edit', {'id': offre.id}) }}">edit</a>
@@ -35,7 +45,17 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+                    
+                                             
+                                        </table><a class="badge badge-complete" href="{{ path('app_offre1_new') }}">Ajouter offre</a>
+                                    </div> <!-- /.table-stats -->
+                                </div>
+                            </div>
+                                </div>
 
-    <a class="btn btn-primary" href="{{ path('app_offre1_new') }}">Create new</a>
+                                
+                        </div> <!-- /.col-md-4 -->
+                    </div>
+                </div>
+                <!-- /.orders -->
 {% endblock %}

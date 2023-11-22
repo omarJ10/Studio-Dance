@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DetailsController!{% endblock %}
+
+{% block body %}
+    <section class="hero-section jarallax light-content">
+        <img src="images/hero-image1.jpg" class="jarallax-img">
+        <div class="hero-content padding-xlarge">
+            <div class="container">
+                <div class="row">
+                    <div class="content-light">
+                        <h1 class="page-title text-uppercase">cour</h1>
+                        <div class="breadcrumbs">
+                <span class="item">
+                  <a href="index">Home /</a>
+                </span>
+                            <span class="item">cour</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <!-- Product Image & Available Colors -->
+                <div class="col-sm-6">
+                    <div class="product-image-large">
+                        <img style="width:100%" src="{{ asset('/img/' ~ cour.image) }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
