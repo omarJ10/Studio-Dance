@@ -1,18 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="Eng">
 <head>
     <style>
-        #weatherWidget .currentDesc {
-            color: #ffffff !important;
-        }
 
-        .traffic-chart {
-            min-height: 335px;
-        }
-
-        #flotPie1 {
-            height: 150px;
-        }
 
         #flotPie1 td {
             padding: 3px;
@@ -21,26 +11,6 @@
         #flotPie1 table {
             top: 20px !important;
             right: -10px !important;
-        }
-
-        .chart-container {
-            display: table;
-            min-width: 270px;
-            text-align: left;
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-
-        #flotLine5 {
-            height: 105px;
-        }
-
-        #flotBarChart {
-            height: 150px;
-        }
-
-        #cellPaiChart {
-            height: 160px;
         }
 
     </style>
@@ -120,7 +90,6 @@
                         <li><i class="fa fa-id-badge"></i><a href="{{ path('app_coach_index') }}">Coach</a></li>
                         <li><i class="fa fa-id-badge"></i><a href="{{ path('app_cours_index') }}">Cours</a></li>
                         <li><i class="fa fa-id-badge"></i><a href="app_offre_index">offres</a></li>
-                       
 
 
                         <!--
@@ -207,9 +176,9 @@
                        aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Components</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="fa fa-id-badge"></i><a href="{{ path('app_client_index') }}">Clients</a></li>
+                        <li><i class="fa fa-id-badge"></i><a href="{{ path('app_admin_index') }}">Admins</a></li>
                         <li><i class="fa fa-id-badge"></i><a href="{{ path('app_coach_index') }}">Coach</a></li>
                         <li><i class="fa fa-id-badge"></i><a href="{{ path('app_cours_index') }}">Cours</a></li>
-                          <li><i class="fa fa-id-badge"></i><a href="{{ path('app_domaine_index') }}">Domaine</a></li>
                         <li><i class="fa fa-id-badge"></i><a href="app_cours_index">offres</a></li>
 
 
@@ -235,39 +204,10 @@
                         <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.html">Basic Form</a></li>
                         <li><i class="menu-icon fa fa-th"></i><a href="forms-advanced.html">Advanced Form</a></li>
                     </ul>
-                </li-->
 
-                <!--li class="menu-title">Icons</li></.menu-title>
 
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Icons</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-fort-awesome"></i><a href="font-fontawesome.html">Font Awesome</a></li>
-                        <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Themefy Icons</a></li>
-                    </ul>
-                </li-->
-                <!--li>
-                    <a href="widgets.html"> <i class="menu-icon ti-email"></i>Widgets </a>
                 </li>
                 <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Charts</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-line-chart"></i><a href="charts-chartjs.html">Chart JS</a></li>
-                        <li><i class="menu-icon fa fa-area-chart"></i><a href="charts-flot.html">Flot Chart</a></li>
-                        <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Peity Chart</a></li>
-                    </ul>
-                </li-->
-
-                <!--li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Maps</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-map-o"></i><a href="maps-gmap.html">Google Maps</a></li>
-                        <li><i class="menu-icon fa fa-street-view"></i><a href="maps-vector.html">Vector Maps</a></li>
-                    </ul>
-                </li-->
-
-                <li class="menu-item-has-children dropdown">
-
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
@@ -281,8 +221,9 @@
         <div class="top-left">
             <div class="navbar-header">
                 <a class="navbar-brand" href="./"><img src="{{ asset ('images copy/logo.png') }}" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="./"><img src="{{ asset ('images copy/logo2.png') }}"
-                                                              alt="Logo"></a>
+                <a class="navbar-brand hidden" href="./">
+                    <img src="{{ asset ('images copy/logo2.png') }}" alt="Logo">
+                </a>
                 <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
             </div>
         </div>
@@ -330,8 +271,8 @@
                         <div class="dropdown-menu" aria-labelledby="message">
                             <p class="red">You have 4 Mails</p>
                             <a class="dropdown-item media" href="#">
-                                <span class="photo media-left"><img alt="avatar"
-                                                                    src="{{ asset ('images copy/avatar/1.jpg') }}"></span>
+                                <span class="photo media-left">
+                                    <img alt="avatar" src="{{ asset ('images copy/avatar/1.jpg') }}"></span>
                                 <div class="message media-body">
                                     <span class="name float-left">Jonathan Smith</span>
                                     <span class="time float-right">Just now</span>
@@ -376,12 +317,11 @@
                     <div class="user-menu dropdown-menu">
                         <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
 
-                        <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span
-                                    class="count">13</span></a>
-
+                        <a class="nav-link" href="#"><i class="fa fa- user">
+                            </i>Notifications <span class="count">13</span></a>
                         <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 
-                        <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                        <a class="nav-link" href="logout"><i class="fa fa-power -off"></i>Logout</a>
                     </div>
                 </div>
 
@@ -390,10 +330,8 @@
     </header>
     <!-- /#header -->
 </div>
-    <div id="right-panel" class="right-panel">
     {% block body %}
 
     {% endblock %}
-</div>
     </body>
 </html>

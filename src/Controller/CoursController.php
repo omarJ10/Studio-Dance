@@ -6,6 +6,7 @@ use App\Entity\Cours;
 use App\Form\CoursType;
 use App\Repository\CoursRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -101,6 +102,7 @@ class CoursController extends AbstractController
 
         return $this->redirectToRoute('app_cours_index', [], Response::HTTP_SEE_OTHER);
     }
+
      /**
  * @Route("/setimage", name="app_setimage")
  */
@@ -108,25 +110,26 @@ class CoursController extends AbstractController
 {
     $publicImagePath = $this->getParameter('kernel.project_dir') . '/public/images/';
 
-    $finder1 = new Finder();
-    $finder1->files()->in($publicImagePath);
 
-    $entityManager = $this->getDoctrine()->getManager();
+    /**
+     * @Route("/get-cours", name="get_cours", methods={"GET"})
+     */
+    public function getCours(CoursRepository $coursRepository): JsonResponse
+    {
+        $cours = $coursRepository->findAll(); // Adjust this based on your entity and repository
 
-    foreach ($finder1 as $file) {
-        $imageName = $file->getFilename();
-
-        // Vérifiez si l'image existe déjà dans la base de données
-        $existingCours = $coursRepository->findOneBy(['image' => $imageName]);
-
-        if (!$existingCours) {
-            // Si l'image n'existe pas, créez une nouvelle entité Cours et enregistrez le nom de l'image
-            $cours = new Cours();
-            $cours->setImage($imageName);
-
-            $entityManager->persist($cours);
+        $formattedCours = [];
+        foreach ($cours as $c) {
+            $formattedCours[] = [
+                'title' => $c->getTitle(),  // Replace with the property of your Cours entity representing the title
+                'start' => $c->getStartDate()->format('Y-m-d H:i:s'),  // Replace with the property representing the start date
+                'end' => $c->getEndDate()->format('Y-m-d H:i:s'),  // Replace with the property representing the end date
+            ];
         }
+
+        return new JsonResponse($formattedCours);
     }
+
 
     // Exécutez les opérations de base de données
     $entityManager->flush();
@@ -137,5 +140,6 @@ class CoursController extends AbstractController
     return $this->render('setimage/index.html.twig', [
         'controller_name' => 'SetimageController',
         'imageNames' => $imageName,
-    ]);*/
+    ]);
+
 }

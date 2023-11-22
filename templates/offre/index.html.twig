@@ -6,7 +6,7 @@
  
 
 {% block body %}
-  
+
 <section class="hero-section jarallax light-content">
       <img src="images/hero-image1.jpg" class="jarallax-img">
       <div class="hero-content padding-xlarge">
@@ -26,8 +26,45 @@
       </div>
     </section>
 
-   //*-/*-/*-/-*/*-/-*/*
-
+    <div id="calendar"></div>
+    <style>
+        #calendar {
+            padding: 60px 20px;
+            width: 80%; /* Adjust the width as needed */
+            margin: 0 auto; /* Center the calendar on the page */
+            max-width: 1200px; /* Set a maximum width if necessary */
+            height: 600px; /* Adjust the height as needed */
+        }
+        #instagram{
+            padding-top: 460px;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay,listWeek'
+                },
+                defaultDate: '2018-11-16',
+                navLinks: true,
+                eventLimit: true,
+                events: [
+                    {
+                        title: 'Front-End Conference',
+                        start: '2018-11-16',
+                        end: '2018-11-18'
+                    },{
+                        title: 'Front-End Conference',
+                        start: '2018-11-16',
+                        end: '2018-11-18'
+                    }
+                ]
+                // /get-cours
+            });
+        });
+    </script>
    
     <section id="instagram" class="overflow-hidden">
       <div class="section-header text-center">
