@@ -7,294 +7,61 @@
  
 
 {% block body %}
-  
+  <section class="hero-section jarallax light-content">
+        <img src="images/hero-image1.jpg" class="jarallax-img">
+        <div class="hero-content padding-xlarge">
+            <div class="container">
+                <div class="row">
+                    <div class="content-light">
+                        <h1 class="page-title text-uppercase">cour</h1>
+                        <div class="breadcrumbs">
+                <span class="item">
+                  <a href="index">Home /</a>
+                </span>
+                            <span class="item">cour</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 <div class="post-wrap padding-large">
-  <div class="container">
-    <div class="row">
-      <main class="post-list post-card-small">
-        {% for cour in cours %}
-        <div class="col-md-4">              
-          <article class="post-item">
-            <div class="post-image zoom-effect">
-              <a href="">
-                <img style="width:100%" src="{{ asset('/img/' ~ cour.image) }}">
-              </a>
-            </div>
+        <div class="container">
+            <div class="row">
+                <main class="post-list post-card-small">
+                    {% for cour in cours %}
+                        <div class="col-md-4">
+                            <article class="post-item">
+                                <div class="post-image zoom-effect">
+                                    <a href="">
+                                        <img style="width:100% ; height:20%" src="{{ asset('/img/' ~ cour.image) }}" alt="">
+                                    </a>
+                                </div>
+                                <div class="post-content">
+                                    <div class="meta-tags text-uppercase">
+                                        <span class="post-category">{{ cour.date ? cour.date|date('Y-m-d') : '' }}</span>
+                                   
+                                    </div>
+                                    <h3 class="post-title">
+                                        <a href="single-post.html" style="font-size: 30px">{{cour.getCoach()}}
+                                            Workshop </a><br>
+                                    </h3>
+                                    <p>{{cour.description}}</p>
+                                    <a class="btn btn-primary" href="{{ path('app_details',{'id': cour.id} ) }}">Read
+                                        More</a>
+                                </div>
+                                <div class="post-content">
+                                    <div class="meta-tags text-uppercase">
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
 
-            <div class="post-content">
-              <div class="meta-tags text-uppercase">
-              <span class="post-category">the cour starts at {{ cour.date|date('Y-m-d H:i:s') }}</span>
-
-          </div>
-        </div>
-      </div>
-    </section>
-    <div class="post-wrap padding-large">
-      <div class="container">
-        <div class="row">
-          <main class="post-list post-card-small">
-              <div class="row d-flex flex-wrap">
-                <div class="col-md-4">              
-                  <article class="post-item">
-                    <div class="post-image zoom-effect">
-                      <a href="single-post.html">
-                        <img src="workshop1.jpg" alt="fashion">
-                      </a>
-                    </div>
-                    <div class="post-content">
-                      <div class="meta-tags text-uppercase">
-                        <span class="post-category">by Dancing Opportunities | Oct 27, 2023</span>
-                      </div>
-                      <h3 class="post-title">
-                        <a href="single-post.html" style="font-size: 30px">Marco Goecke  Workshop </a><br>
-                        <span style="color:#4D007F">By Giovanni Di Palma</span>
-                      </h3>
-                      <p>Dive into the vibrant world of Latin dance with our energetic salsa workshop</p>
-                      <a class="btn btn-primary" href="{{path('app_cour_details')}}">Read More</a>
-                    </div>
-                  </article>
-                </div>
-                <div class="col-md-4">                  
-                  <article class="post-item">
-                    <div class="post-image zoom-effect">
-                      <a href="single-post.html"><img src="workshop2.jpg" alt="fashion"></a>
-                    </div>
-                    <div class="post-content">
-                      <div class="meta-tags text-uppercase">
-                        <span class="post-category">BY DANCING OPPORTUNITIES | OCT 27, 2023</span>
-                      </div>
-                      <h3 class="post-title">
-                        <a href="single-post.html">Forsythe Imporvisation  Workshop</a><br>
-                        <span style="color:#4D007F">By Thierry Guiderdoni</span>
-                      </h3>
-                      <p>Dive into the vibrant world of Latin dance with our energetic salsa workshop sssssssss</p>
-                      <a class="btn btn-primary" href="{{path('app_cour_details')}}">Read More</a>
-                    </div>
-                  </article>
-                </div>
-                <div class="col-md-4">
-                  <article class="post-item">
-                    <div class="post-image zoom-effect">
-                      <a href="single-post.html"><img src="workshop3.jpg" alt="fashion"></a>
-                    </div>
-                    <div class="post-content">
-                      <div class="meta-tags text-uppercase">
-                        <span class="post-category">BY DANCING OPPORTUNITIES | OCT 27, 2023</span>
-                      </div>
-                      <h3 class="post-title">
-                        <a href="single-post.html">Crazy fashion with unique moment</a>
-                      </h3>
-                      <p>Workshops A.F.I. 2023/2024 Creative tools Workshop with Jos Baker Where: Art Factory International...</p>
-                      <a class="btn btn-primary" href="{{path('app_cour_details')}}">Read More</a>
-                    </div>
-                  </article>
-                </div>
-                <div class="col-md-4">                  
-                  <article class="post-item">
-                    <div class="post-image zoom-effect">
-                      <a href="single-post.html"><img src="workshop4.jpg" alt="fashion"></a>
-                    </div>
-                    <div class="post-content">
-                      <div class="meta-tags text-uppercase">
-                        <span class="post-category">BY DANCING OPPORTUNITIES | OCT 27, 2023</span>
-                      </div>
-                      <h3 class="post-title">
-                        <a href="single-post.html">Soft cotton onepiece dress for women</a>
-                      </h3>
-                      <p>Dignissim lacus, turpis ut suspendisse vel tellus. Turpis purus, gravida orci, fringilla...</p>
-                      <a class="btn btn-primary" href="{{path('app_cour_details')}}">Read More</a>
-                    </div>
-                  </article>
-                </div>
-                <div class="col-md-4">                  
-                  <article class="post-item">
-                    <div class="post-image zoom-effect">
-                      <a href="single-post.html"><img src="workshop5.jpg" alt="fashion"></a>
-                    </div>
-                    <div class="post-content">
-                      <div class="meta-tags text-uppercase">
-                        <span class="post-category">BY DANCING OPPORTUNITIES | OCT 27, 2023</span>
-                      </div>
-                      <h3 class="post-title">
-                        <a href="single-post.html">Best accessories for 2022</a>
-                      </h3>
-                      <p>vel pretium suspendisse ultrices tempus vestibulum, nisl platea adipiscing ac ullamcorper...</p>
-                      <a class="btn btn-primary" href="{{path('app_cour_details')}}">Read More</a>
-                    </div>
-                  </article>
-                </div>
-                <div class="col-md-4">
-                  <article class="post-item">
-                    <div class="post-image zoom-effect">
-                      <a href="single-post.html"><img src="workshop6.jpg" alt="fashion"></a>
-                    </div>
-                    <div class="post-content">
-                      <div class="meta-tags text-uppercase">
-                        <span class="post-category">BY DANCING OPPORTUNITIES | OCT 27, 2023</span>
-                      </div>
-                      <h3 class="post-title">
-                        <a href="single-post.html">Top 20 trending photography poses</a>
-                      </h3>
-                      <p>Consequat suspendisse ultrices tempus vestibulum, nisl platea adipiscing ac ullamcorper...</p>
-                      <a class="btn btn-primary" href="{{path('app_cour_details')}}">Read More</a>
-                    </div>
-                  </article>
-                </div>
-                <div class="col-md-4">                  
-                  <article class="post-item">
-                    <div class="post-image zoom-effect">
-                      <a href="single-post.html"><img src="workshop7.jpg" alt="fashion"></a>
-                    </div>
-                    <div class="post-content">
-                      <div class="meta-tags text-uppercase">
-                        <span class="post-category">Fashion</span> / <span class="meta-date">07 April, 2022</span>
-                      </div>
-                      <h3 class="post-title">
-                        <a href="single-post.html">Top 10 minimal outlooks for womens</a>
-                      </h3>
-                      <p>Dignissim lacus, turpis ut suspendisse vel tellus. Turpis purus, gravida orci, fringilla...</p>
-                    </div>
-                  </article>
-                </div>
-                <div class="col-md-4">                  
-                  <article class="post-item">
-                    <div class="post-image zoom-effect">
-                      <a href="single-post.html"><img src="images/post-item8.jpg" alt="fashion"></a>
-                    </div>
-                    <div class="post-content">
-                      <div class="meta-tags text-uppercase">
-                        <span class="post-category">Fashion</span> / <span class="meta-date">10 April, 2022</span>
-                      </div>
-                      <h3 class="post-title">
-                        <a href="single-post.html">fashion clothing for summer</a>
-                      </h3>
-                      <p>vel pretium suspendisse ultrices tempus vestibulum, nisl platea adipiscing ac ullamcorper...</p>
-                    </div>
-                  </article>
-                </div>
-                <div class="col-md-4">
-                  <article class="post-item">
-                    <div class="post-image zoom-effect">
-                      <a href="single-post.html"><img src="images/post-item9.jpg" alt="fashion"></a>
-                    </div>
-                    <div class="post-content">
-                      <div class="meta-tags text-uppercase">
-                        <span class="post-category">Fashion</span> / <span class="meta-date">20 April, 2022</span>
-                      </div>
-                      <h3 class="post-title">
-                        <a href="single-post.html">Outstanding color composition</a>
-                      </h3>
-                      <p>Consequat suspendisse ultrices tempus vestibulum, nisl platea adipiscing ac ullamcorper...</p>
-                    </div>
-                  </article>
-                </div>                
-              </div>
-              <h3 class="post-title">
-                <a href="single-post.html" style="font-size: 30px;">By  {{cour.getCoach() }}</a><br>
-              </h3>
-              <p>{{cour.description}}</p>
-              <a class="btn btn-primary" href="  {{ path('app_cour_detail', {'id': cour.id}) }}">Read More</a>
-            
+                    {% endfor %}
+                </main>
             </div>
-          </article>
         </div>
-        {% endfor %}
-      </main>
     </div>
-  </div>
-</div>
-
-                
-            <nav class="navigation paging-navigation text-center padding-medium" role="navigation">
-              <div class="pagination loop-pagination d-flex justify-content-center">
-                <a href="#">
-                  <i class="icon icon-arrow-left"></i>
-                </a>
-                <span aria-current="page" class="page-numbers current">1</span>
-                <a class="page-numbers" href="#">2</a>
-                <a class="page-numbers" href="#">3</a>
-                <a class="page-numbers" href="#">4</a>
-                <a class="page-numbers" href="#">5</a>
-                <a href="#">
-                  <i class="icon icon-arrow-right"></i>
-                </a>
-              </div>
-            </nav>
-          </main>
-        </div>
-      </div>
-    </div>
-    <section id="instagram" class="overflow-hidden">
-      <div class="section-header text-center">
-        <h2 class="section-title">
-          <span class="text-primary">Check Our</span> Instagram Posts
-        </h2>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="instagram-content d-flex flex-wrap justify-content-center">
-            <div class="col-md-2 col-sm-4">
-              <figure class="zoom-effect magnific">
-                <a href="images/largeitem1.jpg">
-                  <img src="images/item1.jpg" alt="instagram">
-                  <div class="icon-overlay">
-                    <i class="icon icon-instagram1"></i>
-                  </div>
-                </a>
-              </figure>
-            </div>
-            <div class="col-md-2 col-sm-4">
-              <figure class="zoom-effect magnific">
-                <a href="images/largeitem2.jpg">
-                  <img src="images/item2.jpg" alt="instagram">
-                  <div class="icon-overlay">
-                    <i class="icon icon-instagram1"></i>
-                  </div>
-                </a>
-              </figure>
-            </div>
-            <div class="col-md-2 col-sm-4">
-              <figure class="zoom-effect magnific">
-                <a href="images/largeitem3.jpg">
-                  <img src="images/item3.jpg" alt="instagram">
-                  <div class="icon-overlay">
-                    <i class="icon icon-instagram1"></i>
-                  </div>
-                </a>
-              </figure>
-            </div>
-            <div class="col-md-2 col-sm-4">
-              <figure class="zoom-effect magnific">
-                <a href="images/largeitem4.jpg">
-                  <img src="images/item4.jpg" alt="instagram">
-                  <div class="icon-overlay">
-                    <i class="icon icon-instagram1"></i>
-                  </div>
-                </a>
-              </figure>
-            </div>
-            <div class="col-md-2 col-sm-4">
-              <figure class="zoom-effect magnific">
-                <a href="images/largeitem5.jpg">
-                  <img src="images/item5.jpg" alt="instagram">
-                  <div class="icon-overlay">
-                    <i class="icon icon-instagram1"></i>
-                  </div>
-                </a>
-              </figure>
-            </div>
-            <div class="col-md-2 col-sm-4">
-              <figure class="zoom-effect magnific">
-                <a href="images/largeitem6.jpg">
-                  <img src="images/item6.jpg" alt="instagram">
-                  <div class="icon-overlay">
-                    <i class="icon icon-instagram1"></i>
-                  </div>
-                </a>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
      {% endblock %}

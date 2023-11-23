@@ -20,6 +20,7 @@ class CoachType extends AbstractType
             ->add('prenom')
             ->add('domaine_id')
             ->add('salaire')
+            ->add('offre_id')
             ->add('image',FileType::class,
             [
                 'data_class' => null,

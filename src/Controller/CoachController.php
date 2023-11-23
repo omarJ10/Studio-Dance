@@ -34,30 +34,23 @@ class CoachController extends AbstractController
         $coach = new Coach();
         $form = $this->createForm(CoachType::class, $coach);
         $form->handleRequest($request);
-        
-
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $coach = $form->getData();
             //**************** Manage Uploaded FileName
             $photo_prod = $form->get('image')->getData();
-            $originalFilename = pathinfo($photo_prod->getClientOriginalName(), PATHINFO_FILENAME);
-            $newFilename = $originalFilename.'-'.uniqid().'.'.$photo_prod->getClientOriginalExtension();
-            $photo_prod->move($this->getParameter('images_directory'),$newFilename);
-        // Construct the correct path for the image and save it in the Coach entity
-           $imagePath = $newFilename;  // Adjust the path based on your project structure
-           $coach->setImage($imagePath);
-
             $originalFilename = $photo_prod->getClientOriginalName();
             $newFilename = $originalFilename.'-'.uniqid().'.'.$photo_prod->getClientOriginalExtension();
             $photo_prod->move($this->getParameter('images_directory'),$newFilename);
             $coach->setImage($newFilename);
             //****************
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($coach);
             $entityManager->flush();
 
-            $coachRepository->add($coach, true);
+            $coachRepository->add($coach,true);
 
             return $this->redirectToRoute('app_coach_index', [], Response::HTTP_SEE_OTHER);
         }

@@ -21,6 +21,7 @@
                                                       <th>Nom</th>
                                                      <th>Prenom</th>
                                                      <th>Salaire</th>
+                                                    <th>Offre</th>
                                                      <th>Image</th>
                                                      <th>actions</th>
                                                 </tr>
@@ -39,6 +40,7 @@
                                             
 
                                              <td><span class="count">{{ coach.salaire }}</td>
+                                               <td><span class="count">{{ coach.getOffreId()}}</td>
                                              <td>
                                             <img style="width:170px" src="{{ asset('/img/' ~ coach.image) }}">
 

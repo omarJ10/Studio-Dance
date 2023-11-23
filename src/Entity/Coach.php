@@ -45,7 +45,7 @@ class Coach
     /**
      * @ORM\ManyToOne(targetEntity=Domaine::class, inversedBy="coaches")
      * @ORM\JoinColumn(nullable=false)
-     * @ORM\JoinColumn(name="domaine_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="domaine", referencedColumnName="id")
      */
     private $domaine_id;
 
@@ -57,7 +57,7 @@ class Coach
     /**
      * @ORM\ManyToOne(targetEntity=Offre::class, inversedBy="coaches")
      * @ORM\JoinColumn(nullable=false)
-     * @ORM\JoinColumn(name="offre_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="offre", referencedColumnName="id")
      */
     private $offre_id;
 
@@ -66,7 +66,8 @@ class Coach
     public function __construct()
     {
         $this->cours = new ArrayCollection();
-        $this->offre_id = new ArrayCollection();
+       // $this->offre = new ArrayCollection();
+       $this->offre_id = null;
     }
 
     public function getId(): ?int
@@ -79,9 +80,9 @@ class Coach
         return $this->offre_id;
     }
 
-    public function setoffreId(?Domaine $offre_id): self
+    public function setoffreId(?Offre $offre): self
     {
-        $this->offre_id = $offre_id;
+        $this->offre_id = $offre;
 
         return $this;
     }
@@ -159,12 +160,13 @@ class Coach
         return $this->domaine_id;
     }
 
-    public function setDomaineId(?Domaine $domaine_id): self
+    public function setDomaineId(?Domaine $domaine): self
     {
-        $this->domaine_id = $domaine_id;
-
+        $this->domaine_id = $domaine;
         return $this;
     }
+    
+    
 
     public function getImage(): ?string
     {
