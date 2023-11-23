@@ -9,7 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
 /**
  * @Route("/coach")
  */
@@ -20,7 +19,7 @@ class CoachController extends AbstractController
      */
     public function index(CoachRepository $coachRepository): Response
     {
-       
+
         return $this->render('coach/index.html.twig', [
             'coaches' => $coachRepository->findAll(),
         ]);
@@ -34,25 +33,18 @@ class CoachController extends AbstractController
         $coach = new Coach();
         $form = $this->createForm(CoachType::class, $coach);
         $form->handleRequest($request);
-        
-
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $coach = $form->getData();
             //**************** Manage Uploaded FileName
             $photo_prod = $form->get('image')->getData();
-            $originalFilename = pathinfo($photo_prod->getClientOriginalName(), PATHINFO_FILENAME);
-            $newFilename = $originalFilename.'-'.uniqid().'.'.$photo_prod->getClientOriginalExtension();
-            $photo_prod->move($this->getParameter('images_directory'),$newFilename);
-        // Construct the correct path for the image and save it in the Coach entity
-           $imagePath = $newFilename;  // Adjust the path based on your project structure
-           $coach->setImage($imagePath);
-
             $originalFilename = $photo_prod->getClientOriginalName();
-            $newFilename = $originalFilename.'-'.uniqid().'.'.$photo_prod->getClientOriginalExtension();
-            $photo_prod->move($this->getParameter('images_directory'),$newFilename);
+            $newFilename = $originalFilename . '-' . uniqid() . '.' . $photo_prod->getClientOriginalExtension();
+            $photo_prod->move($this->getParameter('images_directory'), $newFilename);
             $coach->setImage($newFilename);
             //****************
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($coach);
             $entityManager->flush();
@@ -75,7 +67,6 @@ class CoachController extends AbstractController
     public function show(Coach $coach): Response
     {
 
-       
 
         return $this->render('coach/show.html.twig', [
             'coach' => $coach,
@@ -89,30 +80,36 @@ class CoachController extends AbstractController
     {
         $form = $this->createForm(CoachType::class, $coach);
         $form->handleRequest($request);
-    
+
         if ($form->isSubmitted() && $form->isValid()) {
             // Handle file upload
             $file = $form['image']->getData();
             if ($file) {
                 // Generate a unique name for the file
-                $fileName = md5(uniqid()).'.'.$file->guessExtension();
-    
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+
                 // Move the file to the desired directory
                 $file->move(
-                    $this->getParameter('image_directory'),
+                    $this->getParameter('images_directory'),
                     $fileName
                 );
-    
+
+                // Remove the old image file if it exists
+                $oldImage = $this->getParameter('images_directory') . '/' . $coach->getImage();
+                if (file_exists($oldImage)) {
+                    unlink($oldImage);
+                }
+
                 // Update the image property of the Coach entity
                 $coach->setImage($fileName);
             }
-    
+
             // Save the Coach entity
             $coachRepository->add($coach, true);
 
             return $this->redirectToRoute('app_coach_index', [], Response::HTTP_SEE_OTHER);
         }
-    
+
         return $this->renderForm('coach/edit.html.twig', [
             'coach' => $coach,
             'form' => $form,
@@ -120,12 +117,13 @@ class CoachController extends AbstractController
     }
 
 
+
     /**
      * @Route("/{id}", name="app_coach_delete", methods={"POST"})
      */
     public function delete(Request $request, Coach $coach, CoachRepository $coachRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$coach->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $coach->getId(), $request->request->get('_token'))) {
             $coachRepository->remove($coach, true);
         }
 

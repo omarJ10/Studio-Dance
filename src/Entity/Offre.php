@@ -44,6 +44,7 @@ class Offre
      */
     private $Coach_id;
 
+
     public function __construct()
     {
         $this->Coach_id = new ArrayCollection();
@@ -97,12 +98,10 @@ class Offre
     
 
 
-    public function setDateFin(\DateTimeInterface $date): self
+    public function setDateFin(\DateTimeInterface $date)
     {
         $this->date_fin = $date;
     }
-    
-    
 
     /**
      * @return Collection<int, Coach>
@@ -132,5 +131,12 @@ class Offre
         }
 
         return $this;
+    }
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return  (string) $this->id;
     }
 }

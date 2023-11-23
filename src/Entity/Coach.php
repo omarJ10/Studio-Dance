@@ -61,12 +61,13 @@ class Coach
      */
     private $offre_id;
 
-    
+
 
     public function __construct()
     {
         $this->cours = new ArrayCollection();
-        $this->offre_id = new ArrayCollection();
+        //$this->offre_id = new ArrayCollection();
+        $this->offre_id = null;
     }
 
     public function getId(): ?int
@@ -79,7 +80,7 @@ class Coach
         return $this->offre_id;
     }
 
-    public function setoffreId(?Domaine $offre_id): self
+    public function setOffreId(?Offre  $offre_id): self
     {
         $this->offre_id = $offre_id;
 
@@ -178,5 +179,5 @@ class Coach
         return $this;
     }
 
-    
+
 }

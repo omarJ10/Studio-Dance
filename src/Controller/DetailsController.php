@@ -9,7 +9,10 @@ use App\Entity\Cours;
 
 class DetailsController extends AbstractController
 {
-    #[Route('/details/{id}', name: 'app_details', methods: ['GET'])]
+
+    /**
+     * @Route("/details/{id}", name="app_details")
+     */
     public function index(Cours $cour): Response
     {
         return $this->render('details/index.html.twig', [

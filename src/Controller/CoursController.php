@@ -10,8 +10,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Symfony\Component\HttpFoundation\File\File ;
 
 /**
  * @Route("/cours")
@@ -43,8 +41,8 @@ class CoursController extends AbstractController
             //**************** Manage Uploaded FileName
             $photo_prod = $form->get('image')->getData();
             $originalFilename = $photo_prod->getClientOriginalName();
-            $newFilename = $originalFilename.'-'.uniqid().'.'.$photo_prod->getClientOriginalExtension();
-            $photo_prod->move($this->getParameter('images_directory'),$newFilename);
+            $newFilename = $originalFilename . '-' . uniqid() . '.' . $photo_prod->getClientOriginalExtension();
+            $photo_prod->move($this->getParameter('images_directory'), $newFilename);
             $cour->setImage($newFilename);
             //****************
 
@@ -83,14 +81,14 @@ class CoursController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $photo = $form->get('image')->getData();
-    
+
             if ($photo instanceof UploadedFile) {
                 $newFilename = $this->uploadImage($photo);
                 $cour->setImage($newFilename);
             } else {
                 $cour->setImage($currentImage);
             }
-    
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($cour);
             $entityManager->flush();
@@ -110,19 +108,16 @@ class CoursController extends AbstractController
      */
     public function delete(Request $request, Cours $cour, CoursRepository $coursRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$cour->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $cour->getId(), $request->request->get('_token'))) {
             $coursRepository->remove($cour, true);
         }
 
         return $this->redirectToRoute('app_cours_index', [], Response::HTTP_SEE_OTHER);
     }
 
-     /**
- * @Route("/setimage", name="app_setimage")
- */
-/*public function showimg(CoursRepository $coursRepository)
-{
-    $publicImagePath = $this->getParameter('kernel.project_dir') . '/public/images/';
+    /**
+     * @Route("/setimage", name="app_setimage")
+     */
 
 
     /**
@@ -143,7 +138,6 @@ class CoursController extends AbstractController
 
         return new JsonResponse($formattedCours);
     }
-    
 
 
 }

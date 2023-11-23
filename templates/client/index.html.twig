@@ -3,69 +3,60 @@
 {% block title %}Clients{% endblock %}
 {% block body %}
 
- <!-- Orders -->
-                <div class="orders">
-                    <div class="row">
-                        <div class="col-xl-8">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="box-title">Clients </h4>
-                                </div>
-                                <div class="card-body--">
-                                    <div class="table-stats order-table ov-h">
-                                        <table class="table ">
-                                            <thead>
-                                                <tr>
-                                    <th>Email</th>
-                                    <th>Password</th>
-                                    <th>Nom</th>
-                                    <th>Prenom</th>
-                                    <th>Telephone</th>
-                                    {# <th>Payement</th> #}
-                                    <th>actions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
+    <!-- Orders -->
 
-                                {% for client in clients %}
-                                    <tr>
-                                        <td>{{ client.email }}</td>
-                                        <td>{{ client.password }}</td>
-                                        <td>{{ client.nom }}</td>
-                                        <td>{{ client.prenom }}</td>
-                                        <td>{{ client.telephone }}</td>
-                                        {#
-                                        {% if client.isVerified == 1 %}
-                                          <td>  <span class="badge badge-complete">Payé</span></td>
-                                            {% else %}
-                                            <td> <span class="badge badge-pending">Non Payé</span></td>
-                                        {% endif %}
-                                        #}
+    <div class="card">
+        <div class="card-body">
+            <h4 class="box-title">Clients </h4>
+        </div>
 
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Telephone</th>
+                {# <th>Payement</th> #}
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
 
-                                        <td>
-                                            <a class="badge badge-complete" href="{{ path('app_client_show', {'id': client.id}) }}">show</a>
-                                            {# <a class="badge badge-complete" href="{{ path('app_client_edit', {'id': client.id}) }}">edit</a> #}
-                                        </td>
-                                    </tr>
-                                {% else %}
-                                    <tr>
-                                        <td colspan="9">no records found</td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
+            {% for client in clients %}
+                <tr>
+                    <td>{{ client.email }}</td>
+                    <td>{{ client.password }}</td>
+                    <td>{{ client.nom }}</td>
+                    <td>{{ client.prenom }}</td>
+                    <td>{{ client.telephone }}</td>
+                    {#
+                    {% if client.isVerified == 1 %}
+                      <td>  <span class="badge badge-complete">Payé</span></td>
+                        {% else %}
+                        <td> <span class="badge badge-pending">Non Payé</span></td>
+                    {% endif %}
+                    #}
 
-                            </table>
-                            {# <a class="badge badge-complete" href="{{ path('app_client_new') }}">Ajouter client</a> #}
-                        </div> <!-- /.table-stats -->
-                    </div>
-                </div>
-            </div>
+                    <td>
+                        <a class="btn btn-secondary"
+                           href="{{ path('app_client_show', {'id': client.id}) }}">show</a>
+                        <a class="btn btn-success"
+                           href="{{ path('app_client_edit', {'id': client.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="9">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
 
-
-        </div> <!-- /.col-md-4 -->
+        </table>
+        {# <a class="badge badge-complete" href="{{ path('app_client_new') }}">Ajouter client</a> #}
+        <!-- /.table-stats -->
     </div>
-    </div>
-    <!-- /.orders -->
+
 
 {% endblock %}

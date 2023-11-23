@@ -19,8 +19,8 @@
                 <td>{{ domaine.id }}</td>
                 <td>{{ domaine.description }}</td>
                 <td>
-                    <a href="{{ path('app_domaine_show', {'id': domaine.id}) }}">show</a>
-                    <a href="{{ path('app_domaine_edit', {'id': domaine.id}) }}">edit</a>
+                    <a class="btn btn-secondary" href="{{ path('app_domaine_show', {'id': domaine.id}) }}">show</a>
+                    <a class="btn btn-danger" href="{{ path('app_domaine_edit', {'id': domaine.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

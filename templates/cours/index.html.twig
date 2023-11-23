@@ -6,45 +6,36 @@
 
 
 
-  <!-- Orders -->
-                <div class="orders">
-                    <div class="row">
-                        <div class="col-xl-8">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="box-title">Cours</h4>
-                                </div>
-                                <div class="card-body--">
-                                    <div class="table-stats order-table ov-h">
-                                        <table class="table ">
-                                            <thead>
-            <tr>
-               
-                <th>Id</th>
-                <th>Date</th>
-                <th>Prix</th>
-                <th>Nom</th>
-                <th>Coach</th>
-                <th>Image</th>
-                <th>actions</th>
-            </tr>
+    <!-- Orders -->
+
+    <table class="table ">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Prix</th>
+            <th>Nom</th>
+            <th>Coach</th>
+            <th>Image</th>
+            <th>actions</th>
+        </tr>
         </thead>
         <tbody>
 
         {% for cour in cours %}
             <tr>
-           
+
                 <td>{{ cour.id }}</td>
                 <td>{{ cour.date ? cour.date|date('Y-m-d') : '' }}</td>
                 <td>{{ cour.prix }}</td>
                 <td>{{ cour.nom }}</td>
                 <td>{{ cour.getCoach() }}</td>
                 <td>
-                <img style="width:170px" src="{{ asset('/img/' ~ cour.image) }}"></td>
-               
+                    <img style="width:100px" src="{{ asset('/img/' ~ cour.image) }}"></td>
+
                 <td>
-                    <a href="{{ path('app_cours_show', {'id': cour.id}) }}">show</a>
-                    <a href="{{ path('app_cours_edit', {'id': cour.id}) }}">edit</a>
+                    <a class="btn btn-primary" href="{{ path('app_cours_show', {'id': cour.id}) }}">show</a>
+                    <a class="btn btn-success" href="{{ path('app_cours_edit', {'id': cour.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -53,17 +44,10 @@
             </tr>
         {% endfor %}
         </tbody>
-                    
-                                             
-                                        </table><a class="badge badge-complete" href="{{ path('app_cours_new') }}">Ajouter coach</a>
-                                    </div> <!-- /.table-stats -->
-                                </div>
-                            </div>
-                                </div>
 
-                                
-                        </div> <!-- /.col-md-4 -->
-                    </div>
-                </div>
-                <!-- /.orders -->
+
+    </table>
+    <a class="btn btn-dark" href="{{ path('app_cours_new') }}">Ajouter Cour</a>
+
+    <!-- /.orders -->
 {% endblock %}

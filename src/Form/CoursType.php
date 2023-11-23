@@ -38,6 +38,7 @@ class CoursType extends AbstractType
             )
             ->add('Coach');
 
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void
