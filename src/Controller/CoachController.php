@@ -49,7 +49,7 @@ class CoachController extends AbstractController
             $entityManager->persist($coach);
             $entityManager->flush();
 
-            $coachRepository->add($coach, true);
+            $coachRepository->add($coach,true);
 
             return $this->redirectToRoute('app_coach_index', [], Response::HTTP_SEE_OTHER);
         }

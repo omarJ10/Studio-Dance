@@ -45,6 +45,11 @@ class Offre
     private $Coach_id;
 
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $name;
+
     public function __construct()
     {
         $this->Coach_id = new ArrayCollection();
@@ -53,6 +58,16 @@ class Offre
     public function getId(): ?int
     {
         return $this->id;
+    }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function setName(string $Name): self
+    {
+        $this->name = $Name;
+
+        return $this;
     }
 
     public function getDate(): ?\DateTimeInterface
@@ -87,6 +102,7 @@ class Offre
     public function setImage(string $image): self
     {
         $this->image = $image;
+           return $this;
 
         return $this;
     }
@@ -94,14 +110,25 @@ class Offre
     public function getDateFin(): ?\DateTimeInterface
     {
         return $this->date_fin;
+     
     }
     
+
 
 
     public function setDateFin(\DateTimeInterface $date)
     {
         $this->date_fin = $date;
     }
+
+
+
+
+public function __toString()
+{
+    return $this->getName(); // replace with the actual property you want to display
+}
+
 
     /**
      * @return Collection<int, Coach>
@@ -117,7 +144,6 @@ class Offre
             $this->Coach_id[] = $coachId;
             $coachId->setOffre($this);
         }
-
         return $this;
     }
 
@@ -125,18 +151,12 @@ class Offre
     {
         if ($this->Coach_id->removeElement($coachId)) {
             // set the owning side to null (unless already changed)
-            if ($coachId->getOffre() === $this) {
-                $coachId->setOffre(null);
+            if ($coachId->getOffreId() === $this) {
+                $coachId->setoffreId(null);
             }
         }
 
         return $this;
     }
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return  (string) $this->id;
-    }
+
 }

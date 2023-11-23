@@ -22,19 +22,5 @@ class CourController extends AbstractController
     }
 
 
-    /**
-     * @Route("/course/{id}", name="course_details")
-     */
-    public function showDetails($id): Response
-    {
-        $course = $this->getDoctrine()->getRepository(Cours::class)->find($id);
 
-        if (!$course) {
-            throw $this->createNotFoundException('Course not found');
-        }
-
-        return $this->render('course/details.html.twig', [
-            'course' => $course,
-        ]);
-    }
 }

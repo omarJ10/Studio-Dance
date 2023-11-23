@@ -32,10 +32,9 @@ class CoachType extends AbstractType
                                 'image/jpg',
                                 'image/png',
                             ]
-                        ]
-                    )
-                ]
-            );
+                        ])
+                ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void
