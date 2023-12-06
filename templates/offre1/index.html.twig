@@ -3,59 +3,43 @@
 {% block title %}Offre index{% endblock %}
 
 {% block body %}
- 
- <!-- Orders -->
-                <div class="orders">
-                    <div class="row">
-                        <div class="col-xl-8">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="box-title">offre </h4>
-                                </div>
-                                <div class="card-body--">
-                                    <div class="table-stats order-table ov-h">
-                                        <table class="table ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="box-title">Offre </h4>
+        </div>
 
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Date</th>
-                <th>Prix</th>
-                <th>Image</th>
-                <th>Date_fin</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for offre in offres %}
-            <tr>
-                <td>{{ offre.id }}</td>
-                <td>{{ offre.date ? offre.date|date('Y-m-d') : '' }}</td>
-                <td>{{ offre.prix }}</td>
-                <td>{{ offre.image }}</td>
-                <td>{{ offre.dateFin ? offre.dateFin|date('Y-m-d') : ''  }}</td>
-                <td>
-                    <a href="{{ path('app_offre1_show', {'id': offre.id}) }}">show</a>
-                    <a href="{{ path('app_offre1_edit', {'id': offre.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-                    
-                                             
-                                        </table><a class="badge badge-complete" href="{{ path('app_offre1_new') }}">Ajouter offre</a>
-                                    </div> <!-- /.table-stats -->
-                                </div>
-                            </div>
-                                </div>
-
-                                
-                        </div> <!-- /.col-md-4 -->
-                    </div>
-                </div>
-                <!-- /.orders -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Prix</th>
+                    <th>Image</th>
+                    <th>Date_fin</th>
+                    <th>Actions</th> {# Fixed the typo in 'actions' #}
+                </tr>
+            </thead>
+            <tbody>
+                {% for offre in offres %}
+                    <tr>
+                        <td>{{ offre.id }}</td>
+                        <td>{{ offre.name }}</td>
+                        <td>{{ offre.date ? offre.date|date('Y-m-d') : '' }}</td>
+                        <td>{{ offre.prix }}</td>
+                        <td><img style="width:100px" src="{{ asset('/img/' ~ offre.image) }}"></td>
+                        <td>{{ offre.dateFin ? offre.dateFin|date('Y-m-d') : '' }}</td>
+                        <td>
+                            <a class="btn btn-primary" href="{{ path('app_offre1_show', {'id': offre.id}) }}">show</a>
+                            <a class="btn btn-success" href="{{ path('app_offre1_edit', {'id': offre.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">no records found</td> {# Adjusted colspan to match the number of columns #}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="btn btn-dark" href="{{ path('app_offre1_new') }}">Create new</a>
 {% endblock %}

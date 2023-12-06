@@ -17,6 +17,8 @@ class Offre1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+        ->add('name')
+
         ->add('date')
         ->add('prix',MoneyType::class)
         ->add('date_fin')

@@ -260,18 +260,16 @@ body {
                             <div class="row">
                                 <div class="col-lg-5 mb-lg-0 mb-3">
                                     <p class="h4 mb-0">Summary</p>
-                                    <p class="mb-0"><span class="fw-bold">Product:</span><span class="c-green">: Name of
-                                            product</span>
+                                    <p class="mb-0"><span class="fw-bold">Cours:</span><span class="c-green">:{{cour.nom}}</span>
                                     </p>
                                     <p class="mb-0">
                                         <span class="fw-bold">Price:</span>
-                                        <span class="c-green">:$452.90</span>
+                                        <span class="c-green">{{cour.prix}}  DTN</span>
                                     </p>
                          
                                 </div>
                                 <div class="col-lg-7">
-                                    <form action="" class="form">
-                                        <div class="row">
+                                    <form action="{{ path('add_payer', {'id': cour.id}) }}" method="post" class="form">                                        <div class="row">
                                             <div class="col-12">
                                                 <div class="form__div">
                                                     <input type="text" class="form-control" placeholder=" ">
@@ -300,7 +298,10 @@ body {
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <button type="submit" class="btn btn-primary w-100">Sumbit</button>
+                                                <a class="btn btn-success w-100" href="{{ path('add_payer',{'id': cour.id} ) }}">Sumbit</a>
+
+
+                                                
                                             </div>
                                         </div>
                                     </form>

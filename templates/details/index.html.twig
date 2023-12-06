@@ -1,6 +1,4 @@
 
-{% extends 'base1.html.twig' %}
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -28,7 +26,6 @@
     
     <section class="hero-section jarallax light-content">
 
-        <img src="images/" class="jarallax-img" alt="Image Not Found">
 
         <div class="hero-content padding-xlarge">
             <div class="container">
@@ -37,13 +34,7 @@
                         <h1 class="page-title text-uppercase">cour</h1>
                         <div class="breadcrumbs">
                             <span class="item">
-                              <a href="index">Home /</a>
-                            </span>
-                            <span class="item">cour</span>
-
-                <span class="item">
-                
-                </span>
+                           
 
                         </div>
                     </div>
@@ -88,7 +79,11 @@
                     <tr>
                         <td>&nbsp;</td>
                         <td>
-                            <a class="btn btn-success" href="{{ path('app_payement',{'id': cour.id} ) }}">Book</a>
+                            <a class="btn btn-success" href="{{ path('app_payement',{'id': cour.id} ) }}">Payer</a>
+                            <a class="btn btn-success" href="{{ path('book_cour',{'id': cour.id} ) }}">Book</a>
+
+
+                            
 
                         </td>
                     </tr>

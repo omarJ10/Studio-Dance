@@ -14,11 +14,10 @@
             <thead>
             <tr>
                 <th>Email</th>
-                <th>Password</th>
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>Telephone</th>
-                {# <th>Payement</th> #}
+                 <th>Payement</th> 
                 <th>actions</th>
             </tr>
             </thead>
@@ -27,17 +26,16 @@
             {% for client in clients %}
                 <tr>
                     <td>{{ client.email }}</td>
-                    <td>{{ client.password }}</td>
                     <td>{{ client.nom }}</td>
                     <td>{{ client.prenom }}</td>
                     <td>{{ client.telephone }}</td>
-                    {#
-                    {% if client.isVerified == 1 %}
-                      <td>  <span class="badge badge-complete">Payé</span></td>
+                 
+                    {% if client.paiement == 1 %}
+                      <td>  <span class="btn btn-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Payé &nbsp;&nbsp;&nbsp;</span></td>
                         {% else %}
-                        <td> <span class="badge badge-pending">Non Payé</span></td>
+                        <td> <span class="btn btn-danger">Non Payé</span></td>
                     {% endif %}
-                    #}
+                   
 
                     <td>
                         <a class="btn btn-secondary"

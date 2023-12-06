@@ -11,8 +11,7 @@ use App\Entity\Coach;
 
 class DetailsController extends AbstractController
 {
-    /**
-     * @Route("/details/{id}", name="app_details")
+
 
     /**
      * @Route("/details/{id}", name="app_details", methods={"GET"})

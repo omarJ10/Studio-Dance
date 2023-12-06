@@ -92,7 +92,8 @@ class Coach
     }
     public function __toString()
     {
-        return $this->prenom . " " . $this->nom;    }
+        return $this->prenom . " " . $this->nom;    
+    }
 
     public function setNom(string $nom): self
     {

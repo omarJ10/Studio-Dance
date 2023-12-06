@@ -51,73 +51,38 @@
 
         </div>
     </section>
-    <section id="products" class="padding-large">
-        <div class="section-header text-center">
-            <h2 class="section-title">
-                <span class="text-primary">Check Our</span> big deals
-            </h2>
-        </div>
-        <div class="container">
-            <div class="swiper product-swiper product-content">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="product-item">
-                            <div class="image-holder align-center">
-                                <img src="images/pic1.jpg" alt="shirt">
-                            </div>
-                            <div class="products-title text-center">
-                                <a href="single-product.html">Hiphop Training</a>
-                                <span class="price text-primary">$39.99</span>
-                            </div>
+<section id="products" class="padding-large">
+    <div class="section-header text-center">
+        <h2 class="section-title">
+            <span class="text-primary">Check Our</span> big deals
+        </h2>
+    </div>
+    <div class="container">
+        <div class="swiper product-swiper product-content">
+            <div class="swiper-wrapper">
+                {% for offre in offres %}
+                <div class="swiper-slide">
+                    <div class="product-item">
+                        <div class="image-holder align-center">
+                            <img src="{{ asset('/img/' ~ offre.image) }}" alt="">
                         </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="product-item">
-                            <div class="image-holder align-center">
-                                <img src="images/flamenco-2.jpg" alt="shoes">
-                            </div>
-                            <div class="products-title text-center">
-                                <a href="single-product.html">Ballet Dance</a>
-                                <span class="price text-primary">$39.99</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="product-item">
-                            <div class="image-holder align-center">
-                                <img src="images/pic2.jpg" alt="sweatshirt">
-                            </div>
-                            <div class="products-title text-center">
-                                <a href="single-product.html">Ballroom Dance</a>
-                                <span class="price text-primary">$39.99</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="product-item">
-                            <div class="image-holder align-center">
-                                <img src="images/flamenco-2.jpg" alt="shirt">
-                            </div>
-                            <div class="products-title text-center">
-                                <a href="single-product.html">Flamenco Dance</a>
-                                <span class="price text-primary">$39.99</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="product-item">
-                            <div class="image-holder align-center">
-                                <img src="images/product-thumb-5.jpg" alt="shoes">
-                            </div>
-                            <div class="products-title text-center">
-                                <a href="single-product.html">Spikenard Sneakers</a>
-                                <span class="price text-primary">$12.00</span>
-                            </div>
-                        </div>
-                    </div>
+                        <div class="products-title text-center">
+                            <a href="{{ path('app_detailsoffre', {'id': offre.id}) }}">{{offre.name}}</a>
+                            <span class="price text-primary">{{offre.prix}} DTN</span>
+                    
+                        {% if app.user %}
+                        <a class="btn btn-primary" href="{{ path('app_detailsoffre', {'id': offre.id}) }}">Read More</a>
+                        {% else %}
+                        <a href="{{ path('app_login') }}" class="btn btn-outline-light rounded-pill">JOIN Workshop</a>
+                        {% endif %}
+                    </div>    </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
+    </div>
+</section>
+
         <div class="btn-center">
             <a href="cour" class="btn btn-outline-primary btn-pill btn-medium">View All Workshops</a>
         </div>
@@ -244,25 +209,37 @@
                     <div class="col-md-6">
                         <div class="class-item" >
                             <figure>
-                                <img src="images/pic2.jpg" alt="video">
+
+                                <img style="width: 100%;height: 625px;" src="{{ asset('/img/' ~ cours[0].image) }}">
                                 <figcaption class="p-5 text-white">
-                                    <h2 class="text-white m-0">Salsa</h2>
-                                    <p class="m-0">By Ameni BEN ABDALLAH </p>
-                                    <a href="connexion" class="btn btn-outline-light rounded-pill">JOIN Class</a>
+                                    <h2 class="text-white m-0">{{cours[0].nom}}</h2>
+                                    <p class="m-0">By {{cours[0].coach}} </p>
+                                    {% if app.user %}
+                                    <a href="{{path('app_cour')}}" class="btn btn-outline-light rounded-pill">JOIN Class</a>
+                                    {% else %}
+                                    <a href="{{path('app_login')}}" class="btn btn-outline-light rounded-pill">JOIN Class</a>
+                                    {% endif %}
                                 </figcaption>
+
                             </figure>
                           <section id="slider"></section>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" >
                         <div class="class-item" >
                             <figure>
-                                <img src="images/video-item1.jpg" alt="video">
+
+                                <img style="width: 100%;height: 625px;" src="{{ asset('/img/' ~ cours[1].image) }}">
                                 <figcaption class="p-5 text-white">
-                                    <h2 class="text-white m-0">Contemporary</h2>
-                                    <p class="m-0">BY Mohamed NASRI</p>
-                                    <a href="connexion" class="btn btn-outline-light rounded-pill">JOIN Class</a>
+                                    <h2 class="text-white m-0">{{cours[1].nom}}</h2>
+                                    <p class="m-0">By {{cours[1].coach}} </p>
+                                    {% if app.user %}
+                                    <a href="{{path('app_cour')}}" class="btn btn-outline-light rounded-pill">JOIN Class</a>
+                                    {% else %}
+                                    <a href="{{path('app_login')}}" class="btn btn-outline-light rounded-pill">JOIN Class</a>
+                                    {% endif %}
                                 </figcaption>
+
                             </figure>
                         </div>
                     </div>
@@ -271,11 +248,30 @@
                     <div class="col-md-4">
                         <div class="class-item" >
                             <figure>
-                                <img src="images/team-member4.jpg" alt="video">
+                                <img style="width: 100%;height: 625px;" src="{{ asset('/img/' ~ cours[4].image) }}">
                                 <figcaption class="p-5 text-white">
-                                    <h2 class="text-white m-0">Hip Hop</h2>
-                                    <p class="m-0">BY Ahmed SAOUDI</p>
-                                    <a href="connexion" class="btn btn-outline-light rounded-pill">JOIN Class</a>
+                                    <h2 class="text-white m-0"> {{cours[4].nom}}</h2>
+                                    <p class="m-0">By {{cours[4].coach}} </p>
+                                    {% if app.user %}
+                                    <a href="{{path('app_cour')}}" class="btn btn-outline-light rounded-pill">JOIN Class</a>
+                                    {% else %}
+                                    <a href="{{path('app_login')}}" class="btn btn-outline-light rounded-pill">JOIN Class</a>
+                                    {% endif %}                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="class-item" >
+                            <figure>
+                                <img style="width: 100%;height: 625px;" src="{{ asset('/img/' ~ cours[5].image) }}">
+                                <figcaption class="p-5 text-white">
+                                    <h2 class="text-white m-0">{{cours[5].nom}}</h2>
+                                    <p class="m-0">By {{cours[5].coach}} </p>
+                                    {% if app.user %}
+                                    <a href="{{path('app_cour')}}" class="btn btn-outline-light rounded-pill">JOIN Class</a>
+                                    {% else %}
+                                    <a href="{{path('app_login')}}" class="btn btn-outline-light rounded-pill">JOIN Class</a>
+                                    {% endif %}
                                 </figcaption>
                             </figure>
                         </div>
@@ -283,26 +279,15 @@
                     <div class="col-md-4">
                         <div class="class-item" >
                             <figure>
-                                <img src="images/flamenco-2.jpg" alt="video">
+                                <img style="width: 100%;height: 625px;" src="{{ asset('/img/' ~ cours[6].image) }}">
                                 <figcaption class="p-5 text-white">
-                                    <h2 class="text-white m-0">Ballet</h2>
-                                    <p class="m-0">BY Ahlem MASOUDI</p>
-                                    <a href="connexion" class="btn btn-outline-light rounded-pill">JOIN Class</a>
-
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="class-item" >
-                            <figure>
-                                <img src="images/video-item4.jpg" alt="video">
-                                <figcaption class="p-5 text-white">
-                                    <h2 class="text-white m-0">Musical Theatre</h2>
-                                    <p class="m-0">BY Omar HAJ TAIEB </p>
-                                    <a href="connexion" class="btn btn-outline-light rounded-pill">JOIN Class</a>
-                                    <a href="connexion" class="btn btn-outline-light rounded-pill iconRed">
-
+                                    <h2 class="text-white m-0">{{cours[6].nom}}</h2>
+                                    <p class="m-0">By {{cours[6].coach}}  </p>
+                                    {% if app.user %}
+                                    <a href="{{path('app_cour')}}" class="btn btn-outline-light rounded-pill">JOIN Class</a>
+                                    {% else %}
+                                    <a href="{{path('app_login')}}" class="btn btn-outline-light rounded-pill">JOIN Class</a>
+                                    {% endif %}
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                              fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd"

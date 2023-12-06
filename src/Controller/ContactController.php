@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\ContactType;
-use App\Entity\Contacttt;
+use App\Entity\Avis;
 class ContactController extends AbstractController
 {
     /**
@@ -15,7 +15,7 @@ class ContactController extends AbstractController
      */
     public function index(Request $request)
  {
- $smartphone = new Contacttt();
+ $smartphone = new Avis();
  $form = $this->createForm(ContactType::class, $smartphone);$form->handleRequest($request);
  if ($form->isSubmitted() && $form->isValid()) {
  // $form->getData() holds the submitted values
@@ -30,6 +30,12 @@ class ContactController extends AbstractController
   }
  return $this->render('contact/index.html.twig', ['form' => $form->createView(),]);
   }
+ /* public function index(): Response
+  {
+      return $this->render('contact/index.html.twig', [
+       'controller_name' => 'ContactController',
+      ]);
+  }*/
  } 
 
 

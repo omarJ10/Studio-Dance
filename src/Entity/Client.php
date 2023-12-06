@@ -56,6 +56,10 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\OneToMany(targetEntity=Avis::class, mappedBy="client")
      */
     private $Avis_id;
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $paye;
 
     public function __construct()
     {
@@ -70,6 +74,10 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
     public function getEmail(): ?string
     {
         return $this->email;
+    }
+    public function getPaiement(): ?bool
+    {
+        return $this->paye;
     }
 
     public function setEmail(string $email): self
@@ -127,6 +135,12 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+    public function setPaiement(bool $paye): self
+    {
+        $this->paye = $paye;
 
         return $this;
     }

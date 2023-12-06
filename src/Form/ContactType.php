@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Contacttt;
+use App\Entity\Avis;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,8 +14,7 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email',EmailType::class)
-            ->add('avis')
+            ->add('coments')
             ->add('OK', SubmitType::class)
         ;
     }
@@ -23,7 +22,7 @@ class ContactType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Contacttt::class,
+            'data_class' => Avis::class,
         ]);
     }
 }

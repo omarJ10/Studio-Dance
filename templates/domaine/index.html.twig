@@ -3,10 +3,13 @@
 {% block title %}Domaine index{% endblock %}
 
 {% block body %}
-    <h1>Domaine index</h1>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="box-title">Domaines </h4>
+        </div>
 
-    <table class="table">
-        <thead>
+        <table class="table table-striped">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Description</th>
@@ -19,7 +22,7 @@
                 <td>{{ domaine.id }}</td>
                 <td>{{ domaine.description }}</td>
                 <td>
-                    <a class="btn btn-secondary" href="{{ path('app_domaine_show', {'id': domaine.id}) }}">show</a>
+                    <a class="btn btn-primary" href="{{ path('app_domaine_show', {'id': domaine.id}) }}">show</a>
                     <a class="btn btn-danger" href="{{ path('app_domaine_edit', {'id': domaine.id}) }}">edit</a>
                 </td>
             </tr>
@@ -31,5 +34,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_domaine_new') }}">Create new</a>
+    <a class="btn btn-dark" href="{{ path('app_domaine_new') }}">Create new</a>
 {% endblock %}

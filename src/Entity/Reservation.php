@@ -30,13 +30,13 @@ class Reservation
 
     /**
      * @ORM\ManyToOne(targetEntity=cours::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $cours;
 
     /**
      * @ORM\ManyToOne(targetEntity=offre::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $offre;
 

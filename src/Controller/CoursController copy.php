@@ -76,34 +76,54 @@ class CoursController extends AbstractController
      * @Route("/{id}/edit", name="app_cours_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Cours $cour, CoursRepository $coursRepository): Response
-    {
-        $currentImage = $cour->getImage();
-        $form = $this->createForm(CoursType::class, $cour);
-        $form->handleRequest($request);
+{
+    // Store the current image file name
+    $currentImage = $cour->getImage();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $photo = $form->get('image')->getData();
-    
-            if ($photo instanceof UploadedFile) {
-                $newFilename = $this->uploadImage($photo);
-                $cour->setImage($newFilename);
-            } else {
-                $cour->setImage($currentImage);
+    // Create the form
+    $form = $this->createForm(CoursType::class, $cour);
+    $form->handleRequest($request);
+
+    // Check if the form is submitted and valid
+    if ($form->isSubmitted() && $form->isValid()) {
+        // Get the file from the form
+        $file = $form->get('image')->getData();
+
+        // Check if a new file is uploaded
+        if ($file) {
+            // Generate a unique name for the file
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+
+            // Move the file to the desired directory
+            $file->move(
+                $this->getParameter('images_directory'),
+                $fileName
+            );
+
+            // Remove the old image file if it exists
+            $oldImagePath = $this->getParameter('images_directory') . '/' . $currentImage;
+            if (file_exists($oldImagePath)) {
+                unlink($oldImagePath);
             }
-    
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($cour);
-            $entityManager->flush();
-            $coursRepository->add($cour, true);
 
-            return $this->redirectToRoute('app_cours_index', [], Response::HTTP_SEE_OTHER);
+            // Update the image property of the cours entity with the new file name
+            $cour->setImage($fileName);
         }
 
-        return $this->renderForm('cours/edit.html.twig', [
-            'cour' => $cour,
-            'form' => $form,
-        ]);
+        // Save the changes to the database
+        $coursRepository->add($cour, true);
+
+        // Redirect to the cours index page
+        return $this->redirectToRoute('app_cours_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    // Render the edit form template
+    return $this->renderForm('cours/edit.html.twig', [
+        'cour' => $cour,
+        'form' => $form,
+    ]);
+}
+
 
     /**
      * @Route("/{id}", name="app_cours_delete", methods={"POST"})

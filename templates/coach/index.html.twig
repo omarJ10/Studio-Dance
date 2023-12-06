@@ -4,8 +4,13 @@
 
 {% block body %}
 
-    <table class="table ">
-        <thead>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="box-title">Clients </h4>
+        </div>
+
+        <table class="table table-striped">
+            <thead>        <thead>
         <tr>
             <th class="serial">Avatar</th>
             <th class="avatar">#</th>
@@ -46,7 +51,7 @@
 
 
     </table>
-    <a class="btn btn-dark" style="padding-bottom:10px " href="{{ path('app_coach_new') }}">Ajouter Coach</a>
+    <a class="btn btn-dark" style="padding-bottom:10px " href="{{ path('app_coach_new') }}">Create new</a>
 
     <!-- /.orders -->
 {% endblock %}

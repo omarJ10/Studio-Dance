@@ -5,11 +5,13 @@
 {% block body %}
 
 
+    <div class="card">
+        <div class="card-body">
+            <h4 class="box-title">Cours </h4>
+        </div>
 
-    <!-- Orders -->
-
-    <table class="table ">
-        <thead>
+        <table class="table table-striped">
+            <thead>
         <tr>
             <th>Id</th>
             <th>Date</th>
@@ -47,7 +49,7 @@
 
 
     </table>
-    <a class="btn btn-dark" href="{{ path('app_cours_new') }}">Ajouter Cour</a>
+    <a class="btn btn-dark" href="{{ path('app_cours_new') }}">Create new</a>
 
     <!-- /.orders -->
 {% endblock %}

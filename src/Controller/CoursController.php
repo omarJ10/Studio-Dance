@@ -75,23 +75,33 @@ class CoursController extends AbstractController
      */
     public function edit(Request $request, Cours $cour, CoursRepository $coursRepository): Response
     {
-        $currentImage = $cour->getImage();
         $form = $this->createForm(CoursType::class, $cour);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $photo = $form->get('image')->getData();
+            // Handle file upload
+            $file = $form['image']->getData();
+            if ($file) {
+                // Generate a unique name for the file
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
 
-            if ($photo instanceof UploadedFile) {
-                $newFilename = $this->uploadImage($photo);
-                $cour->setImage($newFilename);
-            } else {
-                $cour->setImage($currentImage);
+                // Move the file to the desired directory
+                $file->move(
+                    $this->getParameter('images_directory'),
+                    $fileName
+                );
+
+                // Remove the old image file if it exists
+                $oldImage = $this->getParameter('images_directory') . '/' . $cour->getImage();
+                if (file_exists($oldImage)) {
+                    unlink($oldImage);
+                }
+
+                // Update the image property of the cour entity
+                $cour->setImage($fileName);
             }
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($cour);
-            $entityManager->flush();
+            // Save the cour entity
             $coursRepository->add($cour, true);
 
             return $this->redirectToRoute('app_cours_index', [], Response::HTTP_SEE_OTHER);

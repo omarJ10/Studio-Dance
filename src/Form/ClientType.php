@@ -6,6 +6,7 @@ use App\Entity\Client;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Form\CheckboxType;
 
 class ClientType extends AbstractType
 {
@@ -13,12 +14,12 @@ class ClientType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('password')
             ->add('nom')
             ->add('prenom')
             ->add('telephone')
-            //->add('isVerified')
-        ;
+            ->add('paiement', \Symfony\Component\Form\Extension\Core\Type\CheckboxType::class, [
+                'label' => 'Paiement',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

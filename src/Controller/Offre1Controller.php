@@ -84,18 +84,27 @@ class Offre1Controller extends AbstractController
         $form->handleRequest($request);
     
         if ($form->isSubmitted() && $form->isValid()) {
-            $photo = $form->get('image')->getData();
+            $file = $form->get('image')->getData();
     
-            if ($photo instanceof UploadedFile) {
-                $newFilename = $this->uploadImage($photo);
-                $offre->setImage($newFilename);
-            } else {
-                $offre->setImage($currentImage);
+            if ($file) {
+                // Generate a unique name for the file
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+
+                // Move the file to the desired directory
+                $file->move(
+                    $this->getParameter('images_directory'),
+                    $fileName
+                );
+
+                // Remove the old image file if it exists
+                $oldImage = $this->getParameter('images_directory') . '/' . $offre->getImage();
+                if (file_exists($oldImage)) {
+                    unlink($oldImage);
+                }
+
+                // Update the image property of the Offre entity
+                $offre->setImage($fileName);
             }
-    
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($offre);
-            $entityManager->flush();
     
             $offreRepository->add($offre, true);
     

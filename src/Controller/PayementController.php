@@ -8,45 +8,46 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use App\Entity\Client;
+use App\Entity\Cours;
+
 use Symfony\Component\HttpFoundation\Request;
 
 class PayementController extends AbstractController
 {
     /**
-     * @Route("/payement", name="app_payement")
+     * @Route("/payement/{id}", name="app_payement")
      */
-    public function index(): Response
+    public function index(Cours $cour): Response
     {
         return $this->render('payement/index.html.twig', [
             'controller_name' => 'PayementController',
+            'cour' => $cour,
         ]);
-        // src/Controller/ClientController.php
     }
 
+ 
 
     /**
-     * @Route("/client/payer", name="client_payer")
+     * @Route("/payer/{id}", name="add_payer")
      */
-    public function payerAction(Request $request)
-    {
-        $client = new Client();
+// Your controller method
+public function payerAction(Request $request, Cours $cour)
+{
+    $client = $this->getUser(); // Assuming your user information is stored in the Client entity
 
-        $form = $this->createForm(ClientType::class, $client);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            // $client->setPaiement(1);
+        $client->setPaiement(true);
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($client);
-            $entityManager->flush();
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($client);
+        $entityManager->flush();
 
-            // Rediriger ou effectuer d'autres actions après le paiement réussi.
-        }
+        // Rediriger ou effectuer d'autres actions après le paiement réussi.
+    
 
-        return $this->render('payement/payer.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
-
+    return $this->render('payement/index.html.twig', [
+        'cour' => $cour,
+    ]);
 }
+}
+

@@ -21,21 +21,21 @@ class CoursType extends AbstractType
             ->add('nom')
             ->add('description')
 
-            ->add('image',FileType::class,
+            ->add('image', FileType::class,
+            [
+                'data_class' => null,
+                'attr' => ['class' => 'form-control mt-2'],
+
+                'constraints' => new File(
                     [
-                        'data_class' => null,
-                        'attr' => ['class' => 'form-control mt-2'],
-                        'constraints'=> new File(
-                            [
-                                'mimeTypes'=>[
-                                    'image/jpeg',
-                                    'image/jpg',
-                                    'image/png',
-                                ]
-                            ]
-                        )
-                    ]
-            )
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/jpg',
+                            'image/png',
+                        ]
+                    ])
+            ])
+            
             ->add('Coach');
 
 
