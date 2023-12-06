@@ -9,12 +9,17 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+use Symfony\Component\Security\Core\Exception\BadCredentialsException;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Twig\Environment;
+
 
 class LoginAuthenticator extends AbstractLoginFormAuthenticator
 {
@@ -24,11 +29,16 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
 
     private UrlGeneratorInterface $urlGenerator;
     private RouterInterface $router;
+    private AuthenticationUtils $authenticationUtils;
 
-    public function __construct(RouterInterface $router,UrlGeneratorInterface $urlGenerator)
+    private Environment $twig;
+
+    public function __construct(RouterInterface $router,UrlGeneratorInterface $urlGenerator, Environment $twig,AuthenticationUtils $authenticationUtils)
     {
         $this->urlGenerator = $urlGenerator;
         $this->router = $router;
+        $this->authenticationUtils = $authenticationUtils;
+        $this->twig = $twig;
     }
 
     public function authenticate(Request $request): Passport
@@ -61,6 +71,31 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
 
         //return new RedirectResponse($this->urlGenerator->generate('app_index'));
 
+    }
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): RedirectResponse
+    {
+        // Votre logique personnalisée pour gérer les erreurs d'authentification
+        $errorMessage = $this->getAuthenticationErrorMessage($exception);
+
+        // Stockez le message d'erreur dans la session pour l'afficher dans le contrôleur
+        $request->getSession()->getFlashBag()->add('error', $errorMessage);
+
+        // Redirigez vers la page de connexion
+        return new RedirectResponse($this->urlGenerator->generate(self::LOGIN_ROUTE));
+    }
+
+    private function getAuthenticationErrorMessage(AuthenticationException $exception): string
+    {
+        $message = 'Invalid credentials.';
+
+        // Vérifiez le message d'erreur spécifique et personnalisez la réponse
+        if ($exception->getMessageKey() === 'Bad credentials') {
+            $message = 'Wrong email or password.';
+        } elseif ($exception->getMessageKey() === 'Email could not be found.') {
+            $message = 'Wrong email.';
+        }
+
+        return $message;
     }
 
     protected function getLoginUrl(Request $request): string

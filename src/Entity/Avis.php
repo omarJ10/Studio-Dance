@@ -28,7 +28,7 @@ class Avis
     private $Rating;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="datetime")
      */
     private $date_heure;
 
@@ -66,12 +66,12 @@ class Avis
         return $this;
     }
 
-    public function getDateHeure(): ?string
+    public function getDateHeure(): ?\DateTimeInterface
     {
         return $this->date_heure;
     }
 
-    public function setDateHeure(string $date_heure): self
+    public function setDateHeure(\DateTimeInterface $date_heure): self
     {
         $this->date_heure = $date_heure;
 

@@ -56,8 +56,7 @@ class Coach
 
     /**
      * @ORM\ManyToOne(targetEntity=Offre::class, inversedBy="coaches")
-     * @ORM\JoinColumn(nullable=false)
-     * @ORM\JoinColumn(name="offre", referencedColumnName="id")
+     * @ORM\JoinColumn(name="offre_id", referencedColumnName="id", nullable=false)
      */
     private $offre_id;
 

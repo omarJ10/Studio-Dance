@@ -4,6 +4,7 @@
 index:
   path: /
   controller: App\Controller\IndexController::index
+
 admin:
   path: /admin
   controller: App\Controller\AdminController::index
@@ -11,18 +12,25 @@ admin:
 cour:
   path: /cour
   controller: App\Controller\CourController::index
-offre:
-  path: /offre
-  controller: App\Controller\OffreController::index
+
 contact:
   path: /contact
   controller: App\Controller\ContactController::index
+
+offre:
+  path: /offre
+  controller: App\Controller\OffreController::index
+
 about:
   path: /about
   controller: App\Controller\AboutController::index
+
+
 course_details:
   path: '/course/{id}'
   controller: 'App\Controller\CourseController::showDetails'
+
+
 
 
 

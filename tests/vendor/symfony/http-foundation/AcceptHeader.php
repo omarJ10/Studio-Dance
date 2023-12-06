@@ -20,7 +20,7 @@ class_exists(AcceptHeaderItem::class);
  * An accept header is compound with a list of items,
  * sorted by descending quality.
  *
- * @author Jean-François Simon <contact@jfsimon.fr>
+ * @author Jean-François Simon <contact_lod@jfsimon.fr>
  */
 class AcceptHeader
 {

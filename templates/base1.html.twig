@@ -99,15 +99,13 @@
             </ul>
             .menu-title >
             <li class="menu-item-has-children dropdown">
-                <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i
-                            class="menu-icon fa fa-glass"></i>Login</a>
+                <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="menu-icon fa fa-glass"></i>Login</a>
                 <ul class="sub-menu children dropdown-menu">
                     <li><i class="menu-icon fa fa-sign-in"></i><a href="page-login.html">Login</a></li>
-                    <!--li><i class="menu-icon fa fa-sign-in"></i><a href="page-register.html">Register</a></li>
-                    <li><i class="menu-icon fa fa-paper-plane"></i><a href="pages-forget.html">Forget Pass</a></li-->
                 </ul>
             </li>
-            </ul>
+
         </div><!-- /.navbar-collapse -->
     </nav>
 </aside>
@@ -146,7 +144,7 @@
                 <a class="navbar-brand hidden" href="./">
                     <img src="{{ asset ('images copy/logo2.png') }}" alt="Logo">
                 </a>
-                <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+
             </div>
         </div>
         <div class="top-right">
@@ -236,14 +234,11 @@
                              alt="User Avatar">
                     </a>
 
-                    <div class="user-menu dropdown-menu">
-                        <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-
-                        <a class="nav-link" href="#"><i class="fa fa- user">
-                            </i>Notifications <span class="count">13</span></a>
-                        <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
-
-                        <a class="nav-link" href="logout"><i class="fa fa-power -off"></i>Logout</a>
+                    <<div class="user-menu dropdown-menu">
+                        <a class="nav-link" href="#"><i class="fa fa-user"></i> Mon Profil</a>
+                        <a class="nav-link" href="#"><i class="fa fa-bell"></i> Notifications <span class="count">13</span></a>
+                        <a class="nav-link" href="#"><i class="fa fa-cog"></i> Paramètres</a>
+                        <a class="nav-link" href="{{ path('app_logout') }}"><i class="fa fa-power-off"></i> Logout</a>
                     </div>
                 </div>
 
