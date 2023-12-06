@@ -4,7 +4,6 @@
 
 {% block body %}
 <form method="post">
-
     <section id="newsletter" class="newsletter padding-large no-padding-top">
         <div class="container position-relative">
             <div class="row justify-content-center">
@@ -20,7 +19,7 @@
                                 <span class="text-primary">Sign In To</span> Get Connected
                             </h2>
                         </div>
-                        <form id="form">
+                        <form id="form" method="POST">
                             <label for="inputEmail">Email</label>
                             <input type="email" placeholder="Type Your Email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control bg-light u-full-width" autocomplete="email"  autofocus>
                             <label for="inputPassword">Password</label>

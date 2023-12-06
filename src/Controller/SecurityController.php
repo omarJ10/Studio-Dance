@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -23,6 +24,7 @@ class SecurityController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
+        $errorMessage = null;
 
         $errorMessage = null;
 
@@ -36,11 +38,29 @@ class SecurityController extends AbstractController
         }
 
 
+        if ($error instanceof AuthenticationException) {
+            $errorMessage = $this->getAuthenticationErrorMessage($error);
+        }
+
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
             'errorMessage' => $errorMessage,
         ]);
+
+    }
+    private function getAuthenticationErrorMessage(AuthenticationException $exception): string
+    {
+        $message = 'Invalid credentials.';
+
+        // Check the specific error message and customize the response
+        if ($exception->getMessageKey() === 'Bad credentials') {
+            $message = 'Wrong email or password.';
+        } elseif ($exception->getMessageKey() === 'Email could not be found.') {
+            $message = 'Wrong email.';
+        }
+
+        return $message;
     }
 
     /**

@@ -1,92 +1,109 @@
 {% extends 'base.html.twig' %}
-{% block title %}Dance{% endblock %}
+
+{% block title %}Hello ContactController!{% endblock %}
+
 {% block body %}
-<section class="site-banner jarallax padding-large" style="background: url(images/hero-image.jpg) no-repeat;">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <h1 class="page-title">Contact us</h1>
-            <div class="breadcrumbs">
-              <span class="item">
-                <a href="index.html">Home /</a>
-              </span>
-              <span class="item">Contact us</span>
+    <section class="hero-section jarallax light-content">
+        <img src="images/hero-image1.jpg" class="jarallax-img">
+        <div class="hero-content padding-xlarge">
+            <div class="container">
+                <div class="row">
+                    <div class="content-light">
+                        <h1 class="page-title text-uppercase">Contact</h1>
+                        <div class="breadcrumbs">
+                            <span class="item">
+                              <a href="index">Home /</a>
+                            </span>
+                            <span class="item">Contact</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </section>
     <section class="contact-information padding-large">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="section-header">
-              <h2 class="section-title"><span class="text-primary">Get in</span> Touch</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="section-header">
+                        <h2 class="section-title"><span class="text-primary">Get in</span> Touch</h2>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="detail-list">
+                            <ul class="list-unstyled list-icon">
+                                <li>
+                                    <i class="icon icon-phone"></i>+216 58 90 30 55
+                                </li>
+                                <li>
+                                    <i class="icon icon-envelope"></i>
+                                    <a href="mailto:dance.studio@gmail.com">dance.studio@gmail.com</a>
+                                </li>
+                                <li>
+                                    <i class="icon icon-location"></i>Tunisia
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="social-links">
+                            <h3>Social Links</h3>
+                            <ul class="d-flex list-unstyled">
+                                <li><a href="#" class="icon icon-facebook"></a></li>
+                                <li><a href="#" class="icon icon-twitter"></a></li>
+                                <li><a href="#" class="icon icon-pinterest"></a></li>
+                                <li><a href="#" class="icon icon-youtube"></a></li>
+                                <li><a href="#" class="icon icon-linkedin-square"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% if app.user %}
+                <div class="col-md-6">
+                    <div class="contact-information">
+                        <div class="section-header">
+                            <h2 class="section-title"><span class="text-primary">Send A</span> Message</h2>
+                        </div>
+                        {{ form(form) }}
+                    </div>
+                </div>
+                {% else %}
+                <div class="col-md-6">
+                    <div class="contact-information">
+                        <div class="section-header">
+                            <h2 class="section-title"><span class="text-primary">Send A</span> Message</h2>
+                        </div>
+                        <div class="alert alert-danger">You Must Be Logged In to Give a Review </div>
+                        <a href="login" class="btn btn-secondary">Login</a>
+                    </div>
+                </div>
+                {% endif %}
             </div>
-            <div class="contact-detail">
-              <div class="detail-list">
-               
-                <ul class="list-unstyled list-icon">
-                  <li>
-                    <i class="icon icon-phone"></i>+216 58 90 30 55
-                  </li>
-                  <li>
-                    <i class="icon icon-envelope"></i>
-                    <a href="mailto:dance.studio@gmail.com">dance.studio@gmail.com</a>
-                  </li>
-                  <li>
-                    <i class="icon icon-location"></i>Tunisia
-                  </li>
-                </ul>
-              </div>
-              <div class="social-links">
-                <h3>Social Links</h3>
-                <ul class="d-flex list-unstyled">
-                  <li><a href="#" class="icon icon-facebook"></a></li>
-                  <li><a href="#" class="icon icon-twitter"></a></li>
-                  <li><a href="#" class="icon icon-pinterest"></a></li>
-                  <li><a href="#" class="icon icon-youtube"></a></li>
-                  <li><a href="#" class="icon icon-linkedin-square"></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="contact-information">
-              <div class="section-header">
-                <h2 class="section-title"><span class="text-primary">Send A</span>  Message</h2>
-              </div>
-              {{ form(form) }}
-            </div>
-          </div>
         </div>
-      </div>
     </section>
     <section class="google-map">
-      <div class="mapouter">
-        <div class="gmap_canvas">
-          <iframe width="100%" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-          <a href="https://getasearch.com/fmovies"></a>
-          <br>
-          <style>
-            .mapouter {
-              position: relative;
-              text-align: right;
-              height: 500px;
-              width: 100%;
-            }
-          </style>
-          <a href="https://www.embedgooglemap.net">embedgooglemap.net</a>
-          <style>
-            .gmap_canvas {
-              overflow: hidden;
-              background: none !important;
-              height: 500px;
-              width: 100%;
-            }
-          </style>
+        <div class="mapouter">
+            <div class="gmap_canvas">
+                <iframe width="100%" height="500" id="gmap_canvas"
+                        src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                <a href="https://getasearch.com/fmovies"></a>
+                <br>
+                <style>
+                    .mapouter {
+                        position: relative;
+                        text-align: right;
+                        height: 500px;
+                        width: 100%;
+                    }
+                </style>
+                <a href="https://www.embedgooglemap.net">embedgooglemap.net</a>
+                <style>
+                    .gmap_canvas {
+                        overflow: hidden;
+                        background: none !important;
+                        height: 500px;
+                        width: 100%;
+                    }
+                </style>
+            </div>
         </div>
-      </div>
- 
-
+    </section>
 {% endblock %}

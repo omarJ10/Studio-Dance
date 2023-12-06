@@ -8,7 +8,7 @@
 {% block body %}
 
 <section class="hero-section jarallax light-content">
-      <img src="images/hero-image1.jpg" class="jarallax-img">
+      <img src="images/hero-image1.jpg" class="jarallax-img" alt="hero">
       <div class="hero-content padding-xlarge">
         <div class="container">
           <div class="row">
@@ -47,19 +47,18 @@
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay,listWeek'
                 },
-                defaultDate: '2018-11-16',
+                defaultDate: '2023-11-11',
                 navLinks: true,
                 eventLimit: true,
                 events: [
+                    {% for cour in cours %}
                     {
-                        title: 'Front-End Conference',
-                        start: '2018-11-16',
-                        end: '2018-11-18'
-                    },{
-                        title: 'Front-End Conference',
-                        start: '2018-11-16',
-                        end: '2018-11-18'
+                        title: '{{ cour.nom }}',
+                        start: '{{ cour.date.format('Y-m-d H:i:s') }}',
+                        end: '{{ cour.date|date_modify('+3 days')|date('Y-m-d H:i:s') }}'
                     }
+                    {% if not loop.last %},{% endif %}
+                    {% endfor %}
                 ]
                 // /get-cours
             });

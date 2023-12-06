@@ -16,7 +16,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Descriptor interface.
  *
- * @author Jean-François Simon <contact@jfsimon.fr>
+ * @author Jean-François Simon <contact_lod@jfsimon.fr>
  */
 interface DescriptorInterface
 {

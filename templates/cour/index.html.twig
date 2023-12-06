@@ -44,13 +44,22 @@
                                         <a href="single-post.html" style="font-size: 30px">{{ cour.nom }} </a><br>
                                         By<span style="color:#8b2ccb"> {{ cour.Coach }}</span>
                                     </h3>
-                                    <p>{{ cour.description }}</p>
+                                    <p class="clamp-4-lines">{{ cour.description }}</p>
                                     <a class="btn btn-primary" href="{{ path('app_details',{'id': cour.id} ) }}">Read
                                         More</a>
                                 </div>
 
                             </article>
                         </div>
+                        <style>
+                            .clamp-4-lines {
+                                display: -webkit-box;
+                                -webkit-box-orient: vertical;
+                                overflow: hidden;
+                                -webkit-line-clamp: 3; /* Définit le nombre maximum de lignes */
+                                text-overflow: ellipsis; /* Ajoute des points de suspension (...) en cas de troncature du texte */
+                            }
+                        </style>
 
                     {% endfor %}
                 </main>

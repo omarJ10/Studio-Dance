@@ -72,42 +72,32 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         //return new RedirectResponse($this->urlGenerator->generate('app_index'));
 
     }
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): Response
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): RedirectResponse
     {
-        // Vérifier si le formulaire a été soumis et si les champs email et mot de passe sont vides
-        $isFormSubmitted = $request->isMethod('POST');
-        $email = $request->request->get('email', '');
-        $password = $request->request->get('password', '');
-    
-        if ($isFormSubmitted && (empty($email) || empty($password))) {
-            $message = 'Veuillez fournir une adresse e-mail et un mot de passe.';
-        } elseif ($exception instanceof BadCredentialsException) {
-            // If the exception is BadCredentialsException, it means the email or password is incorrect.
-            $message = 'Adresse e-mail ou mot de passe incorrect.';
-        } else {
-            // Default message for other authentication failures
-            $message = 'Erreur de connexion.';
+        // Votre logique personnalisée pour gérer les erreurs d'authentification
+        $errorMessage = $this->getAuthenticationErrorMessage($exception);
+
+        // Stockez le message d'erreur dans la session pour l'afficher dans le contrôleur
+        $request->getSession()->getFlashBag()->add('error', $errorMessage);
+
+        // Redirigez vers la page de connexion
+        return new RedirectResponse($this->urlGenerator->generate(self::LOGIN_ROUTE));
+    }
+
+    private function getAuthenticationErrorMessage(AuthenticationException $exception): string
+    {
+        $message = 'Invalid credentials.';
+
+        // Vérifiez le message d'erreur spécifique et personnalisez la réponse
+        if ($exception->getMessageKey() === 'Bad credentials') {
+            $message = 'Wrong email or password.';
+        } elseif ($exception->getMessageKey() === 'Email could not be found.') {
+            $message = 'Wrong email.';
         }
-    
-        // Rendez le modèle de la page de connexion avec le message d'erreur
-        return $this->renderLoginTemplate($request, $message);
 
-    // Le comportement par défaut s'il n'y a pas de problème avec les champs email et mot de passe
-    return parent::onAuthenticationFailure($request, $exception);
-}  
+        return $message;
+    }
 
-private function renderLoginTemplate(Request $request, string $errorMessage): Response
-{
-    $error = $this->authenticationUtils->getLastAuthenticationError();
-
-    $content = $this->twig->render('security/login.html.twig', [
-        'last_username' => $this->authenticationUtils->getLastUsername(),
-        'error' => $error,
-        'errorMessage' => $errorMessage,
-    ]);
-
-    return new Response($content);
-}
     protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);

@@ -1,6 +1,6 @@
 <form method="post" action="{{ path('app_client_delete', {'id': client.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ client.id) }}">
-    <a class="btn btn-success" href="{{ path('app_client_index') }}">back to list</a>
-    <a class="btn btn-primary" href="{{ path('app_client_edit', {'id': client.id}) }}">edit</a>
+
+
     <button class="btn btn-danger">Delete</button>
 </form>
