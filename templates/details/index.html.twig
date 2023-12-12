@@ -1,4 +1,6 @@
-
+{% extends 'base2.html.twig' %}
+{% block title %}Dance{% endblock %}
+{% block body %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -31,22 +33,7 @@
                         <div class="breadcrumbs">
                             <span class="item">
                            
-<section class="hero-section jarallax light-content">
-    <div class="hero-content padding-xlarge">
-        <div class="container">
-            <div class="row">
-                <div class="content-light">
-                    <h1 class="page-title text-uppercase">cour</h1>
-                    <div class="breadcrumbs">
-                <span class="item">
 
-                </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <div class="section">
     <div class="container">
@@ -84,6 +71,11 @@
                     <tr>
                         <td>&nbsp;</td>
                         <td>
+    {% for flashMessage in app.flashes('error') %}
+    <div class="alert alert-danger">
+        {{ flashMessage }}
+    </div>
+{% endfor %}
                             <a class="btn btn-success" href="{{ path('app_payement',{'id': cour.id} ) }}">Payer</a>
                             <a class="btn btn-success" href="{{ path('book_cour',{'id': cour.id} ) }}">Book</a>
 
@@ -102,3 +94,4 @@
     </div>
 </div>
 
+{% endblock %}

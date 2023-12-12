@@ -56,10 +56,7 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\OneToMany(targetEntity=Avis::class, mappedBy="client")
      */
     private $Avis_id;
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $paye;
+
 
     public function __construct()
     {
@@ -75,10 +72,7 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->email;
     }
-    public function getPaiement(): ?bool
-    {
-        return $this->paye;
-    }
+
 
     public function setEmail(string $email): self
     {
@@ -138,12 +132,7 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    public function setPaiement(bool $paye): self
-    {
-        $this->paye = $paye;
 
-        return $this;
-    }
 
     /**
      * Returning a salt is only needed, if you are not using a modern

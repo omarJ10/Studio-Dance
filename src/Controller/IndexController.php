@@ -51,6 +51,13 @@ class IndexController extends AbstractController
                 $reservation->setClient($user);
                 $reservation->setOffre($offre);
                 $reservation->setDate(new \DateTime());
+               /* $email = (new Email())
+                ->from('helasaoudi024@gmail.com')
+                ->to($user->getEmail())
+                ->subject('Confirmation de réservation')
+                ->text('Votre réservation a été confirmée avec succès!');
+    
+            $mailer->send($email);*/
 
                 // Persist and flush the reservation to the database
                 $entityManager->persist($reservation);
@@ -75,45 +82,49 @@ class IndexController extends AbstractController
      */
     public function bookCour(int $id): Response
     {
-        dump("helllo".$id);
-
-        $entityManager = $this->getDoctrine()->getManager();
-
+        // ...
+    
         // Get the authenticated user (you need to have the security system set up)
         $user = $this->getUser();
-
+    
         // Check if the user is authenticated
         if ($user) {
             // Find the offer by ID
             $cour = $entityManager->getRepository(Cours::class)->find($id);
-
-
-            // Check if the offer exists
-            if ($cour) {
-                // Create a new Reservation entity
-                $reservation = new Reservation();
-                $reservation->setClient($user);
-                $reservation->setCours($cour);
-                $reservation->setDate(new \DateTime());
-
-                // Persist and flush the reservation to the database
-                $entityManager->persist($reservation);
-                $entityManager->flush();
-
-                // You can add a success flash message if needed
-                $this->addFlash('success', 'Offer booked successfully.');
+    
+            $existingReservation = $this->getDoctrine()->getRepository(Reservation::class)
+                ->findOneBy(['client' => $user, 'cours' => $cour]);
+    
+            if ($existingReservation) {
+                // Le cours est déjà réservé par le client, afficher un message ou rediriger
+                $this->addFlash('error', 'Vous avez déjà réservé ce cours.');
             } else {
-                // Handle the case where the offer does not exist
-                $this->addFlash('error', 'Offer not found.');
+                // Check if the offer exists
+
+                if ($cour) {
+                    // Create a new Reservation entity
+                    $reservation = new Reservation();
+                    $reservation->setClient($user);
+                    $reservation->setCours($cour);
+                    $reservation->setDate(new \DateTime());
+    
+                    // Persist and flush the reservation to the database
+                    $entityManager->persist($reservation);
+                    $entityManager->flush();
+    
+                    // You can add a success flash message if needed
+                    $this->addFlash('success', 'Offer booked successfully.');
+                } else {
+                    // Handle the case where the offer does not exist
+                    $this->addFlash('error', 'Offer not found.');
+                }
             }
         } else {
             // Handle the case where the user is not authenticated
             $this->addFlash('error', 'You need to be logged in to book an offer.');
         }
-
+    
         // Redirect back to the offer details page
         return $this->redirectToRoute('app_details', ['id' => $id]);
     }
 }
-
-

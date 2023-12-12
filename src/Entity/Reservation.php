@@ -33,6 +33,10 @@ class Reservation
      * @ORM\JoinColumn(nullable=true)
      */
     private $cours;
+    /**
+    * @ORM\Column(type="boolean",nullable=true)
+    */
+   private $paye;
 
     /**
      * @ORM\ManyToOne(targetEntity=offre::class)
@@ -53,6 +57,16 @@ class Reservation
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+    public function getPaiement(): ?bool
+    {
+        return $this->paye;
+    }
+    public function setPaiement(bool $paye): self
+    {
+        $this->paye = $paye;
 
         return $this;
     }

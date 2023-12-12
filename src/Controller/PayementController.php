@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use App\Entity\Client;
 use App\Entity\Cours;
+use App\Entity\Reservation ;
 
 use Symfony\Component\HttpFoundation\Request;
 
@@ -35,12 +36,27 @@ public function payerAction(Request $request, Cours $cour)
 {
     $client = $this->getUser(); // Assuming your user information is stored in the Client entity
 
+        $existingReservation = $this->getDoctrine()->getRepository(Reservation::class)
+        ->findOneBy(['client' => $client, 'cours' => $cour]);
 
-        $client->setPaiement(true);
+    if ($existingReservation) {
+        // Le cours est déjà réservé par le client, afficher un message ou rediriger
+        $this->addFlash('error', 'Vous avez déjà réservé ce cours.');
+
+    }
+    else{
+
+
+        $reservation=new Reservation();
+        $reservation->setClient($client);
+        $reservation->setCours($cour);
+        $reservation->setPaiement(true);
+        $reservation->setDate(new \DateTime());
 
         $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($client);
+        $entityManager->persist($reservation);
         $entityManager->flush();
+    }
 
         // Rediriger ou effectuer d'autres actions après le paiement réussi.
     
@@ -48,6 +64,7 @@ public function payerAction(Request $request, Cours $cour)
     return $this->render('payement/index.html.twig', [
         'cour' => $cour,
     ]);
+
 }
 }
 
